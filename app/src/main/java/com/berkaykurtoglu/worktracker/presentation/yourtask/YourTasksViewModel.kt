@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.berkaykurtoglu.worktracker.domain.usecases.UseCases
-import com.berkaykurtoglu.worktracker.presentation.friendstask.FriendsTaskState
 import com.berkaykurtoglu.worktracker.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -22,15 +21,14 @@ class YourTasksViewModel @Inject constructor(
 
     init {
         useCases.getCurrentUser()?.let {
-            getTasks()
+            getUnmarkedTasks()
         }
     }
 
-
-    fun getTasks(){
+    fun getMarkedTasks(){
         useCases.getCurrentUser()?.let {
 
-            useCases.getCurrentUsersTasks(it).onEach {
+            useCases.getCurrentUsersMarkedTasks(it).onEach {
 
                 when(it) {
                     is Resource.Success ->{
@@ -50,6 +48,31 @@ class YourTasksViewModel @Inject constructor(
         }
 
     }
+
+    fun getUnmarkedTasks(){
+        useCases.getCurrentUser()?.let {
+
+            useCases.getCurrentUsersUnmarkedTasksUseCase(it).onEach {
+
+                when(it) {
+                    is Resource.Success ->{
+                        _state.value = _state.value.copy(isLoading = false, tasks = it.data!!)
+                    }
+                    is Resource.Error ->{
+                        _state.value = _state.value.copy(isLoading = false, error = it.message!!)
+                    }
+                    is Resource.Loading ->{
+                        _state.value = _state.value.copy(isLoading = true, error = "")
+                    }
+                    else ->{}
+                }
+
+            }.launchIn(viewModelScope)
+
+        }
+
+    }
+
 
 
 

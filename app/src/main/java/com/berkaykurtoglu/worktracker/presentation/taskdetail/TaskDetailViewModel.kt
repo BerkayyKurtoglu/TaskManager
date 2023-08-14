@@ -59,20 +59,6 @@ class TaskDetailViewModel @Inject constructor(
 
     fun getCurrentUser() : String? = useCases.getCurrentUser()
 
-
-    fun onEvent(
-        event : TaskDetailEvent
-    ){
-
-        when(event) {
-            is TaskDetailEvent.AddComment ->{
-                addAComment(event.comment,event.taskDocumentId)
-            }
-        }
-
-    }
-
-
     private fun addAComment(
         comment: Comment,
         documentId: String
@@ -97,6 +83,45 @@ class TaskDetailViewModel @Inject constructor(
         }.launchIn(viewModelScope)
 
     }
+
+    private fun markTaskAsDone(
+        documentId: String
+    ){
+        useCases.markAsDoneUseCase(documentId).onEach {
+
+            when (it) {
+
+                is Resource.Loading -> {
+                    _state.value = _state.value.copy(isLoading = true, isCommentUploaded = false, error = "")
+                }
+                is Resource.Success ->{
+                    _state.value = _state.value.copy(isLoading = false, isCommentUploaded = true, error = "")
+                }
+                is Resource.Error ->{
+                    _state.value = _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false)
+                }
+
+            }
+
+        }.launchIn(viewModelScope)
+
+    }
+
+    fun onEvent(
+        event : TaskDetailEvent
+    ){
+
+        when(event) {
+            is TaskDetailEvent.AddComment ->{
+                addAComment(event.comment,event.taskDocumentId)
+            }
+            is TaskDetailEvent.MarkAsDone ->{
+                markTaskAsDone(event.taskDocumentId)
+            }
+        }
+
+    }
+
 
 
 

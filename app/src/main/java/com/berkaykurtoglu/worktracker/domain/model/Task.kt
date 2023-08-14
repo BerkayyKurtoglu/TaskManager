@@ -11,10 +11,12 @@ data class Task(
     var comments : List<Comment> = listOf(),
     var user : String = "",
     @DocumentId
-    var documentId : String = ""
+    var documentId : String = "",
+    @field:JvmField
+    var isMarked : Boolean = false
 
 ) {
 
-    constructor() : this("", "", "", "", listOf(), "")
+    constructor() : this("", "", "", "", listOf(), "",isMarked = false)
 
 }

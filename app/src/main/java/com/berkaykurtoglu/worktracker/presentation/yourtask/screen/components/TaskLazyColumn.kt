@@ -26,7 +26,7 @@ fun TasksLazyColumn(
         verticalItemSpacing =15.dp,
         horizontalArrangement = Arrangement.spacedBy(15.dp),
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(20.dp)
+        contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 20.dp)
     ){
 
         items(list){

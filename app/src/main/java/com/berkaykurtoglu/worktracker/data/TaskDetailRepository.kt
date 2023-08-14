@@ -58,6 +58,22 @@ class TaskDetailRepository(
 
     }
 
+    fun markAsDone(
+        documentId: String
+    ) : Flow<Resource<Unit>> = flow {
+
+        emit(Resource.Loading())
+        try {
+            firebase.firestore.collection(Constants.TASK_COLLECTION)
+                .document(documentId).update("isMarked",true).await()
+            emit(Resource.Success(Unit))
+
+        }catch (e : Exception){
+            emit(Resource.Error(message = e.localizedMessage ?: "Something went wrong"))
+        }
+
+    }
+
 
 
 

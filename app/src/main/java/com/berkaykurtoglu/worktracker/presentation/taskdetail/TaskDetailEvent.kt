@@ -9,4 +9,8 @@ sealed class TaskDetailEvent{
         val taskDocumentId : String
     ) : TaskDetailEvent()
 
+    data class MarkAsDone(
+        val taskDocumentId: String
+    ) : TaskDetailEvent()
+
 }

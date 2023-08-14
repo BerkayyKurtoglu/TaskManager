@@ -1,6 +1,5 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen
 
-
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -24,7 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.berkaykurtoglu.worktracker.util.Category
 import com.berkaykurtoglu.worktracker.util.Screens
-import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table.TableRow
+import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table.TableRow
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.TopBar
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.bottomappbar.BottomBarScreen
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.NoteInputScreen

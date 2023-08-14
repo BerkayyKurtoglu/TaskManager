@@ -1,4 +1,4 @@
-package com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table
+package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -19,7 +19,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.presentation.friendstask.screen.FriendsScreen
+import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table.TabItem
 import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.YourTaskScreen
+import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.FilterChips
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

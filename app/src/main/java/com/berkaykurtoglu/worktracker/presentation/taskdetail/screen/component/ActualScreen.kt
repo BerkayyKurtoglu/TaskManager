@@ -144,7 +144,6 @@ fun ActualScreen(
                     CommentRow(comment = item)
                 }
             }
-
         }
 
         Row(
@@ -156,10 +155,10 @@ fun ActualScreen(
         ) {
 
             user?.let {
-                if (task.user == it)
+                if (task.user == it && !task.isMarked)
                     OutlinedIconButton(
                         onClick = {
-
+                            viewModel.onEvent(TaskDetailEvent.MarkAsDone(task.documentId))
                         },
                         colors = IconButtonDefaults.outlinedIconButtonColors(
                             contentColor = MarkAsDoneColor

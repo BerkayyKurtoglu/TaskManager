@@ -2,12 +2,12 @@ package com.berkaykurtoglu.worktracker.domain.usecases
 
 import com.berkaykurtoglu.worktracker.data.YourTaskRepository
 
-class GetCurrentUsersTasksUseCase(
+class GetCurrentUsersMarkedTasksUseCase(
     private val repository: YourTaskRepository
 ) {
 
     operator fun invoke(
         email : String
-    ) = repository.getUsersTasks(email)
+    ) = repository.getUsersMarkedTasks(email)
 
 }
