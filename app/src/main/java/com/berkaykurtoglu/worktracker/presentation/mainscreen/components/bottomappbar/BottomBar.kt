@@ -14,8 +14,6 @@ import com.berkaykurtoglu.worktracker.util.Category
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Screens
 
-//Commit test
-
 @Composable
 fun BottomBarScreen (
     viewModel: MainViewModel,
@@ -23,6 +21,8 @@ fun BottomBarScreen (
     navController : NavController,
     category: Category
 ) {
+
+
 
     BottomAppBar(
         actions ={
