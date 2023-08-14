@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302994502586",
+    "project_id": "work-tracker-aa535",
+    "storage_bucket": "work-tracker-aa535.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302994502586:android:2c4628c6fa34702c7a2383",
+        "android_client_info": {
+          "package_name": "com.berkaykurtoglu.worktracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302994502586-jgmcv9tv5p90rl5s1cak5k9ds6omj6ad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXWBA9X2shuDIDAQpbtmpomU-vfvBTyPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302994502586-jgmcv9tv5p90rl5s1cak5k9ds6omj6ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
