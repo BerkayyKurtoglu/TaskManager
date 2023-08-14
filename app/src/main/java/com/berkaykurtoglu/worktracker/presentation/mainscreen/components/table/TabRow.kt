@@ -11,6 +11,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -18,10 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.berkaykurtoglu.worktracker.presentation.friendstask.screen.FriendsScreen
+import com.berkaykurtoglu.worktracker.presentation.friendstask.FriendsScreen
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table.TabItem
-import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.YourTaskScreen
-import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.FilterChips
+import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTaskScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -64,7 +64,7 @@ fun TableRow(
                                 pagerState.animateScrollToPage(index)
                             }
                         },
-                        text = {Text(text = tabItem.title )},
+                        icon = { Icon(imageVector = tabItem.icon, contentDescription = "")}
                     )
                 }
 

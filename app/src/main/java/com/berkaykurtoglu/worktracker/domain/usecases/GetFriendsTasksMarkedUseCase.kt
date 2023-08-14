@@ -4,10 +4,10 @@ import com.berkaykurtoglu.worktracker.data.FriendsTaskRepository
 import javax.inject.Singleton
 
 @Singleton
-class GetFriendsTasksUseCase(
+class GetFriendsTasksMarkedUseCase(
     private val friendsTasksRepository : FriendsTaskRepository
 ) {
 
-    operator fun invoke() = friendsTasksRepository.getFriendsTasks()
+    operator fun invoke() = friendsTasksRepository.getFriendsMarkedTasks()
 
 }

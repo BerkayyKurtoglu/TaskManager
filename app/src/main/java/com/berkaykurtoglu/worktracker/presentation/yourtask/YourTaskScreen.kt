@@ -1,5 +1,6 @@
-package com.berkaykurtoglu.worktracker.presentation.yourtask.screen
+package com.berkaykurtoglu.worktracker.presentation.yourtask
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,13 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.FilterCategorie
 import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.FilterChips
 import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.TasksLazyColumn
@@ -59,20 +58,27 @@ fun YourTaskScreen(
             .pullRefresh(pullRefreshState),
     ) {
 
-        if (state.error.isNotBlank()){
-            TODO()
-        }else{
-            //Show lazy column
-            if(state.tasks.isEmpty()){
+        Column(
+            verticalArrangement = Arrangement.Top,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            FilterChips(filterList,selectedItem)
 
+            if (state.error.isNotBlank()){
+                TODO()
             }else{
-                Column {
-                    FilterChips(filterList,selectedItem)
-                    //Spacer(modifier = Modifier.height(10.dp))
-                    TasksLazyColumn(list = state.tasks,navController)
+                //Show lazy column
+                if(state.tasks.isEmpty()){
+
+                }else{
+                    Column {
+                        //Spacer(modifier = Modifier.height(10.dp))
+                        TasksLazyColumn(list = state.tasks,navController)
+                    }
                 }
             }
         }
+
 
         PullRefreshIndicator(
             refreshing = state.isLoading,

@@ -15,7 +15,7 @@ class FriendsTaskRepository(
     private val firebase : Firebase
 ) {
 
-    fun getFriendsTasks(
+    fun getFriendsMarkedTasks(
 
     ) = flow<Resource<List<Task>>> {
 
@@ -23,13 +23,27 @@ class FriendsTaskRepository(
         try {
 
             val tasks = firebase.firestore.collection(Constants.TASK_COLLECTION)
-                .get().await().toObjects(Task::class.java)
+                .whereEqualTo("isMarked",true).get().await().toObjects(Task::class.java)
             emit(Resource.Success(data = tasks))
 
         }catch (e : FirebaseFirestoreException){
             emit(Resource.Error(message = e.localizedMessage ?: "Something went wrong"))
         }
 
+    }
+
+    fun getUsersUnmarkedTasks() = flow<Resource<List<Task>>> {
+        emit(Resource.Loading())
+        try {
+
+            val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
+                .whereEqualTo("isMarked",false).get().await().toObjects(Task::class.javaObjectType)
+            emit(Resource.Success(taskList))
+
+        }catch (e : FirebaseFirestoreException){
+            println(e.localizedMessage)
+            emit(Resource.Error(message = e.localizedMessage ?: "Something went wrong try again"))
+        }
     }
 
 

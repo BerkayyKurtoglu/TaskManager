@@ -171,50 +171,59 @@ fun ActualScreen(
 
             Spacer(modifier = Modifier.width(5.dp))
 
-            OutlinedTextField(
-                value = commentText ,
-                onValueChange = {
-                    commentText = it
-                },
-                placeholder = {
-                    Text(text = "Add a comment", textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                },
-                modifier = Modifier.weight(1f), //cover as many as you can
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = Color.Transparent,
-                    unfocusedBorderColor = Color.Transparent,
-                    disabledBorderColor = Color.Transparent,
-                    focusedContainerColor = TextFieldBackGroundColor,
-                    unfocusedContainerColor = TextFieldBackGroundColor
-                ),
-                shape = RoundedCornerShape(15.dp),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    capitalization = KeyboardCapitalization.Sentences),
-                keyboardActions = KeyboardActions(
-                    onDone = {
-                        //add comment
-                        val user = viewModel.getCurrentUser()
-                        user?.let {
-                            viewModel.onEvent(TaskDetailEvent.AddComment(
-                                comment = Comment(it,commentText, Timestamp.now()),
-                                documentId
-                            ))
+            if (!task.isMarked) {
+
+                OutlinedTextField(
+                    value = commentText,
+                    onValueChange = {
+                        commentText = it
+                    },
+                    placeholder = {
+                        Text(
+                            text = "Add a comment", textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    },
+                    modifier = Modifier.weight(1f), //cover as many as you can
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = Color.Transparent,
+                        unfocusedBorderColor = Color.Transparent,
+                        disabledBorderColor = Color.Transparent,
+                        focusedContainerColor = TextFieldBackGroundColor,
+                        unfocusedContainerColor = TextFieldBackGroundColor
+                    ),
+                    shape = RoundedCornerShape(15.dp),
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        capitalization = KeyboardCapitalization.Sentences
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = {
+                            //add comment
+                            val user = viewModel.getCurrentUser()
+                            user?.let {
+                                viewModel.onEvent(
+                                    TaskDetailEvent.AddComment(
+                                        comment = Comment(it, commentText, Timestamp.now()),
+                                        documentId
+                                    )
+                                )
+                            }
                         }
-                    }
+                    )
                 )
-            )
 
-            Spacer(modifier = Modifier.width(5.dp))
+                Spacer(modifier = Modifier.width(5.dp))
 
-            AddCommentButton(commentText) {
-                //add comment
-                user?.let {
-                    viewModel.onEvent(TaskDetailEvent.AddComment(
-                        comment = Comment(it,commentText, Timestamp.now()),
-                        documentId
-                    ))
+                AddCommentButton(commentText) {
+                    //add comment
+                    user?.let {
+                        viewModel.onEvent(
+                            TaskDetailEvent.AddComment(
+                                comment = Comment(it, commentText, Timestamp.now()),
+                                documentId
+                            )
+                        )
+                    }
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components
+package com.berkaykurtoglu.worktracker.presentation.friendstask.screen.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.berkaykurtoglu.worktracker.presentation.friendstask.FriendsTaskViewModel
 import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,7 +26,7 @@ import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 fun FilterChips(
     filterList: List<FilterCategorie>,
     selectedItem : MutableState<FilterCategorie>,
-    viewModel : YourTasksViewModel = hiltViewModel()
+    viewModel : FriendsTaskViewModel = hiltViewModel()
 ) {
 
 
@@ -44,10 +45,12 @@ fun FilterChips(
                     selectedItem.value = it
                     when(it){
                         is FilterCategorie.UnMarkedChip ->{
-                            viewModel.getUnmarkedTasks()
+                            println("unmarked")
+                            viewModel.getFriendsUnmarkedTasks()
                         }
                         is FilterCategorie.MarkedChip ->{
-                            viewModel.getMarkedTasks()
+                            println("marked")
+                            viewModel.getFriendsMarkedTasks()
                         }
                     }
                 },

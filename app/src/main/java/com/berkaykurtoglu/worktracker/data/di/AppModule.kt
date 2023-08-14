@@ -11,7 +11,8 @@ import com.berkaykurtoglu.worktracker.domain.usecases.AddATask
 import com.berkaykurtoglu.worktracker.domain.usecases.CurrentUserUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetCurrentUsersMarkedTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetCurrentUsersUnmarkedTasksUseCase
-import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsTasksUseCase
+import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsTasksMarkedUseCase
+import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsUnmarkedTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetTaskDetailUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.MarkAsDoneUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.SignInUseCase
@@ -87,7 +88,8 @@ object AppModule {
         signOutUseCase = SignOutUseCase(firebase),
         addATask = AddATask(noteInputRepository),
         getCurrentUsersMarkedTasks = GetCurrentUsersMarkedTasksUseCase(yourTaskRepository),
-        getFriendsTasksUseCase = GetFriendsTasksUseCase(friendsTaskRepository),
+        getFriendsMarkedTasksUseCase = GetFriendsTasksMarkedUseCase(friendsTaskRepository),
+        getFriendsUnmarkedTasksUseCase = GetFriendsUnmarkedTasksUseCase(friendsTaskRepository),
         getTaskDetailUseCase = GetTaskDetailUseCase(taskDetailRepository),
         addACommentUseCase = AddACommentUseCase(taskDetailRepository),
         getCurrentUsersUnmarkedTasksUseCase = GetCurrentUsersUnmarkedTasksUseCase(yourTaskRepository),
