@@ -2,6 +2,7 @@ package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,9 @@ import androidx.compose.material3.TabRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.presentation.friendstask.FriendsScreen
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table.TabItem
@@ -49,10 +53,9 @@ fun TableRow(
     )
 
         Column(
-            modifier = Modifier.padding(paddingValues)
         ) {
             TabRow(
-                selectedTabIndex = pagerState.currentPage,
+                selectedTabIndex = pagerState.currentPage
             ) {
 
                 tabs.forEachIndexed { index, tabItem ->

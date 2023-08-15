@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.model.Document
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Singleton
@@ -25,22 +26,34 @@ class MainRepository(
 
     fun getCurrentUser() :String? = firebase.auth.currentUser?.email
 
-    fun getUsersTasks(
-        email : String?
-    ) = flow<Resource<List<com.berkaykurtoglu.worktracker.domain.model.Task>>> {
+    fun searchForTasks(
+        list : List<com.berkaykurtoglu.worktracker.domain.model.Task>,
+        query : String
+    ) : Flow<Resource<List<com.berkaykurtoglu.worktracker.domain.model.Task>>> = flow {
+
+        emit(Resource.Loading())
+        try {
+            val filteredList = list.filter { it.title.contains(query,true) }
+            emit(Resource.Success(filteredList))
+        }catch (e : FirebaseFirestoreException){
+            emit(Resource.Error(e.localizedMessage ?: "Something went wrong"))
+        }
+    }
+
+    fun getTasksOnce(
+
+    ) : Flow<Resource<List<com.berkaykurtoglu.worktracker.domain.model.Task>>> = flow {
 
         emit(Resource.Loading())
         try {
             val tasks = firebase.firestore.collection(Constants.TASK_COLLECTION)
-                .whereEqualTo("user",email).get().await().toObjects(com.berkaykurtoglu.worktracker.domain.model.Task::class.java)
+                .get().await().toObjects(com.berkaykurtoglu.worktracker.domain.model.Task::class.java)
             emit(Resource.Success(tasks))
-
         }catch (e : FirebaseFirestoreException){
-            emit(Resource.Error(e.localizedMessage ?: "Something went wrong"))
+            emit(Resource.Error(e.localizedMessage ?: "Could not take the tasks"))
         }
 
     }
-
 
 
 }

@@ -1,10 +1,13 @@
 package com.berkaykurtoglu.worktracker.presentation.search
 
+import android.widget.Space
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -18,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,12 +54,6 @@ fun SearchScreen(
         mutableStateOf("")
     }
 
-    val scope = rememberCoroutineScope()
-    var job : Job? = null
-
-    Surface(
-        color = Color(0xFFFFFFFF)
-    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -121,10 +119,10 @@ fun SearchScreen(
             if (state.isLoading) CircularProgressIndicator()
             if (state.task.isNotEmpty()){
                 //Show the screen
+                Spacer(Modifier.height(10.dp))
                 LazyTaskColumn(state.task,mainNavController)
             }
 
         }
-    }
 
 }

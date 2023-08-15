@@ -121,10 +121,13 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.23.0")
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
 
     //Lottie
     implementation ("com.airbnb.android:lottie-compose:6.1.0")
+
+    //Icons
+
 
 
 }

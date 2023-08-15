@@ -90,6 +90,7 @@ object AppModule {
         yourTaskRepository: YourTaskRepository,
         friendsTaskRepository: FriendsTaskRepository,
         taskDetailRepository: TaskDetailRepository,
+        mainRepository: MainRepository,
         searchRepository: SearchRepository,
         firebase: Firebase
     ) : UseCases = UseCases(
@@ -104,8 +105,8 @@ object AppModule {
         addACommentUseCase = AddACommentUseCase(taskDetailRepository),
         getCurrentUsersUnmarkedTasksUseCase = GetCurrentUsersUnmarkedTasksUseCase(yourTaskRepository),
         markAsDoneUseCase = MarkAsDoneUseCase(taskDetailRepository),
-        getTasksOnceUseCase = GetTasksOnceUseCase(searchRepository),
-        searchTasksUseCase = SearchTasksUseCase(searchRepository)
+        getTasksOnceUseCase = GetTasksOnceUseCase(mainRepository),
+        searchTasksUseCase = SearchTasksUseCase(mainRepository)
 
     )
 
