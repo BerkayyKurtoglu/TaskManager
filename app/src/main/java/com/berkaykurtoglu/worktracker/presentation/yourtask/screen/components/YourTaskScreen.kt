@@ -1,4 +1,4 @@
-package com.berkaykurtoglu.worktracker.presentation.yourtask
+package com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,9 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.FilterCategorie
-import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.FilterChips
-import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.TasksLazyColumn
+import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable

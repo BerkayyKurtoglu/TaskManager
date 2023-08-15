@@ -24,9 +24,10 @@ import androidx.navigation.navArgument
 import com.berkaykurtoglu.worktracker.util.Category
 import com.berkaykurtoglu.worktracker.util.Screens
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table.TableRow
-import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.TopBar
+import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.TopBar
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.bottomappbar.BottomBarScreen
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.NoteInputScreen
+import com.berkaykurtoglu.worktracker.presentation.search.SearchScreen
 import com.berkaykurtoglu.worktracker.presentation.taskdetail.screen.TaskDetailScreen
 import com.berkaykurtoglu.worktracker.util.Constants
 

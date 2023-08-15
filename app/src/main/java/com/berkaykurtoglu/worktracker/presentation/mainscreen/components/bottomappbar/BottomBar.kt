@@ -42,8 +42,7 @@ fun BottomBarScreen (
             }
 
             IconButton(onClick = {
-
-
+                signOutNavController.navigate(Screens.SearchScreen.route)
             }
             ) {
                 Icon(Icons.Outlined.Search,"Exit")

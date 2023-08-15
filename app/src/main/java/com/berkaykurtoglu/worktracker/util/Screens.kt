@@ -7,5 +7,6 @@ sealed class Screens(var route: String){
     object TaskDetailScreen : Screens("TaskDetail")
     object LoginScreen : Screens("Login")
     object MainScreen : Screens("Main/")
+    object SearchScreen : Screens("Search")
 
 }

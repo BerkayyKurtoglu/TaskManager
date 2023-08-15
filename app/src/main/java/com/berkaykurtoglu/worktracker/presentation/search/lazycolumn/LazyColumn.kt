@@ -1,4 +1,4 @@
-package com.berkaykurtoglu.worktracker.presentation.friendstask.screen.components
+package com.berkaykurtoglu.worktracker.presentation.search.lazycolumn
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -17,9 +17,9 @@ import com.berkaykurtoglu.worktracker.util.Category
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun FriendsTasksLazyColumn(
-    list : List<Task>,
-    navController: NavController
+fun LazyTaskColumn(
+    list: List<Task>,
+    navController : NavController
 ) {
 
     LazyVerticalStaggeredGrid(
@@ -27,12 +27,12 @@ fun FriendsTasksLazyColumn(
         verticalItemSpacing =15.dp,
         horizontalArrangement = Arrangement.spacedBy(15.dp),
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+        contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 20.dp)
     ){
 
-        items(list){
+        items(list, key = {it.title}){
             //Show the items
-            TaskItemView(task = it, category = Category.FRIEND_TASK,navController)
+            TaskItemView(task = it, Category.FRIEND_TASK,navController)
         }
 
     }

@@ -3,6 +3,7 @@ package com.berkaykurtoglu.worktracker.data.di
 import com.berkaykurtoglu.worktracker.data.FriendsTaskRepository
 import com.berkaykurtoglu.worktracker.data.MainRepository
 import com.berkaykurtoglu.worktracker.data.NoteInputRepository
+import com.berkaykurtoglu.worktracker.data.SearchRepository
 import com.berkaykurtoglu.worktracker.data.SignInRepository
 import com.berkaykurtoglu.worktracker.data.TaskDetailRepository
 import com.berkaykurtoglu.worktracker.data.YourTaskRepository
@@ -14,7 +15,9 @@ import com.berkaykurtoglu.worktracker.domain.usecases.GetCurrentUsersUnmarkedTas
 import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsTasksMarkedUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsUnmarkedTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetTaskDetailUseCase
+import com.berkaykurtoglu.worktracker.domain.usecases.GetTasksOnceUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.MarkAsDoneUseCase
+import com.berkaykurtoglu.worktracker.domain.usecases.SearchTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.SignInUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.SignOutUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.UseCases
@@ -75,12 +78,19 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideSearchRepository(
+        firebase: Firebase
+    ) : SearchRepository = SearchRepository(firebase)
+
+    @Singleton
+    @Provides
     fun provideUseCases(
         signInRepository: SignInRepository,
         noteInputRepository: NoteInputRepository,
         yourTaskRepository: YourTaskRepository,
         friendsTaskRepository: FriendsTaskRepository,
         taskDetailRepository: TaskDetailRepository,
+        searchRepository: SearchRepository,
         firebase: Firebase
     ) : UseCases = UseCases(
         signIn = SignInUseCase(signInRepository),
@@ -93,7 +103,9 @@ object AppModule {
         getTaskDetailUseCase = GetTaskDetailUseCase(taskDetailRepository),
         addACommentUseCase = AddACommentUseCase(taskDetailRepository),
         getCurrentUsersUnmarkedTasksUseCase = GetCurrentUsersUnmarkedTasksUseCase(yourTaskRepository),
-        markAsDoneUseCase = MarkAsDoneUseCase(taskDetailRepository)
+        markAsDoneUseCase = MarkAsDoneUseCase(taskDetailRepository),
+        getTasksOnceUseCase = GetTasksOnceUseCase(searchRepository),
+        searchTasksUseCase = SearchTasksUseCase(searchRepository)
 
     )
 
