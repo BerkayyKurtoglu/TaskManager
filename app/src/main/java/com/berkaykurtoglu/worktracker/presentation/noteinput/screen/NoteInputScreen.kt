@@ -123,7 +123,7 @@ fun NoteInputScreen(
                     AddButton(
                         modifier = Modifier.align(Alignment.BottomCenter)
                     ) {
-                        if (titleText.value.isNotBlank() || bodyText.value.isNotBlank()) {
+                        if (titleText.value.isNotBlank()) {
                             viewModel.addATask(
                                 titleText.value, bodyText.value, date.value,
                                 backGroundColor.value.toArgb().toString()
@@ -132,7 +132,7 @@ fun NoteInputScreen(
                         }
                         Toast.makeText(
                             navController.context,
-                            "Please, at least fill title or body text",
+                            "Please, give a title to your task 😉",
                             Toast.LENGTH_LONG
                         ).show()
                     }

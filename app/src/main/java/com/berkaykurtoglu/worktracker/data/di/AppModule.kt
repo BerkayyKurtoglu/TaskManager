@@ -6,10 +6,12 @@ import com.berkaykurtoglu.worktracker.data.NoteInputRepository
 import com.berkaykurtoglu.worktracker.data.SearchRepository
 import com.berkaykurtoglu.worktracker.data.SignInRepository
 import com.berkaykurtoglu.worktracker.data.TaskDetailRepository
+import com.berkaykurtoglu.worktracker.data.TaskItemViewRepository
 import com.berkaykurtoglu.worktracker.data.YourTaskRepository
 import com.berkaykurtoglu.worktracker.domain.usecases.AddACommentUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.AddATask
 import com.berkaykurtoglu.worktracker.domain.usecases.CurrentUserUseCase
+import com.berkaykurtoglu.worktracker.domain.usecases.DeleteATask
 import com.berkaykurtoglu.worktracker.domain.usecases.GetCurrentUsersMarkedTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetCurrentUsersUnmarkedTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsTasksMarkedUseCase
@@ -84,6 +86,14 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideTaskItemRepository(
+        firebase: Firebase
+    ) : TaskItemViewRepository = TaskItemViewRepository(firebase)
+
+
+
+    @Singleton
+    @Provides
     fun provideUseCases(
         signInRepository: SignInRepository,
         noteInputRepository: NoteInputRepository,
@@ -92,6 +102,7 @@ object AppModule {
         taskDetailRepository: TaskDetailRepository,
         mainRepository: MainRepository,
         searchRepository: SearchRepository,
+        taskItemViewRepository: TaskItemViewRepository,
         firebase: Firebase
     ) : UseCases = UseCases(
         signIn = SignInUseCase(signInRepository),
@@ -106,7 +117,8 @@ object AppModule {
         getCurrentUsersUnmarkedTasksUseCase = GetCurrentUsersUnmarkedTasksUseCase(yourTaskRepository),
         markAsDoneUseCase = MarkAsDoneUseCase(taskDetailRepository),
         getTasksOnceUseCase = GetTasksOnceUseCase(mainRepository),
-        searchTasksUseCase = SearchTasksUseCase(mainRepository)
+        searchTasksUseCase = SearchTasksUseCase(mainRepository),
+        deleteATask = DeleteATask(taskItemViewRepository)
 
     )
 
