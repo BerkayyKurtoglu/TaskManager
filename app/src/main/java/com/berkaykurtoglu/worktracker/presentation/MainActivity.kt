@@ -1,20 +1,15 @@
 package com.berkaykurtoglu.worktracker.presentation
 
-import android.app.StatusBarManager
 import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -22,12 +17,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.MainScreen
-import com.berkaykurtoglu.worktracker.presentation.search.SearchScreen
 import com.berkaykurtoglu.worktracker.presentation.signin.screen.LogInScreen
 import com.berkaykurtoglu.worktracker.presentation.theme.WorkTrackerTheme
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Screens
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -71,9 +64,6 @@ class MainActivity : ComponentActivity() {
 
                             MainScreen(navController)
 
-                        }
-                        composable(Screens.SearchScreen.route){
-                            SearchScreen(navController)
                         }
 
                     }
