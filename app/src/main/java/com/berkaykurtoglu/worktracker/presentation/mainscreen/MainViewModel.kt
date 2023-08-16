@@ -50,7 +50,7 @@ class MainViewModel @Inject constructor(
     }
 
 
-    private fun getTasksOnce() {
+    fun getTasksOnce() {
         useCases.getTasksOnceUseCase().onEach {
             when(it) {
                 is Resource.Success ->{

@@ -1,6 +1,7 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -66,7 +67,7 @@ fun SearchComponent(
     var isActive by remember {
         mutableStateOf(false)
     }
-    var scope = rememberCoroutineScope()
+    val scope = rememberCoroutineScope()
     var job : Job? = null
 
     if (!isActive) {
@@ -93,6 +94,7 @@ fun SearchComponent(
         active = isActive ,
         onActiveChange = {
                          isActive = it
+            if (it) mainViewModel.getTasksOnce()
         },
         leadingIcon = {
             if(!isActive)
@@ -161,24 +163,37 @@ fun SearchComponent(
                     Spacer(modifier = Modifier
                         .height(0.dp)
                         .weight(1f))
+
+                    Canvas(modifier = Modifier.size(6.dp)){
+                        drawCircle(
+                            color =
+                            if (it.isMarked) Color(0xFF6BA854)
+                            else Color(0xFFD37373)
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(7.dp))
+
                     Icon(
                         imageVector = Icons.Default.ArrowOutward,
                         contentDescription = "",
                         tint = Color(0xFF979797),
-                        modifier = Modifier.size(20.dp).clickable {
-                            query = it.title
-                            job?.cancel()
-                            job = scope.launch {
-                                delay(500)
-                                mainViewModel.filterTasks(state.taskForOnceList,query)
-                            }
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clickable {
+                                query = it.title
+                                job?.cancel()
+                                job = scope.launch {
+                                    delay(500)
+                                    mainViewModel.filterTasks(state.taskForOnceList, query)
+                                }
 
-                        }
+                            }
                     )
                 }
             }
             item {
-                if (query.isNotBlank()&& state.task.isNotEmpty())
+                if (query.isNotBlank()&& state.task.isNotEmpty()) {
                     Text(
                         text = "${state.task.size} result found..",
                         modifier = Modifier
@@ -187,6 +202,16 @@ fun SearchComponent(
                         textAlign = TextAlign.Center,
                         color = Color(0xFF7C7C7C)
                     )
+                    Text(
+                        text = "(Red Dot means those tasks are not marked, the greens are marked)",
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        fontSize = 10.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color(0xFF7C7C7C)
+                    )
+                }
+
             }
 
         }
