@@ -127,6 +127,8 @@ dependencies {
     implementation ("com.airbnb.android:lottie-compose:6.1.0")
 
     //Icons
+    implementation ("androidx.compose.material:material-icons-extended")
+
 
 
 

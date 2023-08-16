@@ -21,7 +21,7 @@ class TaskItemViewModel @Inject constructor(
 
     fun getCurrentUser() = useCases.getCurrentUser()
 
-    fun deleteATask(
+    private fun deleteATask(
         documentId : String
     )=
 
@@ -40,6 +40,18 @@ class TaskItemViewModel @Inject constructor(
             }
 
         }.launchIn(viewModelScope)
+
+    fun onEvent(
+        event : TaskItemViewEvent
+    ) {
+
+        when(event){
+            is TaskItemViewEvent.Delete->{
+                deleteATask(event.documentId)
+            }
+        }
+
+    }
 
 
 

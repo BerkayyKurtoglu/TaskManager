@@ -17,12 +17,13 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun datePicker(
-    calendarState : UseCaseState,
+    calendarState : UseCaseState
 ) : String {
 
     var date by remember {
         mutableStateOf("")
     }
+
 
     CalendarDialog(
         state = calendarState ,
