@@ -1,5 +1,12 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.bottomappbar
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material3.BottomAppBar
@@ -52,11 +59,16 @@ fun BottomBarScreen (
 
         },
         floatingActionButton = {
-            if (isVisible)
+            AnimatedVisibility(
+                visible = isVisible,
+                enter = fadeIn()+ slideInHorizontally(),
+                exit = fadeOut()+ slideOutHorizontally()
+            ) {
                 FloatingAction {
-                    //Your task category
                     navController.navigate(Screens.NoteInputScreen.route)
-                } },
+                }
+            }
+        }
 
     )
 

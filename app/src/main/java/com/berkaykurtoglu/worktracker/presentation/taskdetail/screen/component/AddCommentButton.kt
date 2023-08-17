@@ -1,8 +1,12 @@
 package com.berkaykurtoglu.worktracker.presentation.taskdetail.screen.component
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowUpward
 import androidx.compose.material.icons.outlined.KeyboardArrowUp
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,12 +18,12 @@ fun AddCommentButton(
     onClicked : () -> Unit
 ) {
 
-    OutlinedIconButton(
+    FilledTonalIconButton(
         onClick = onClicked,
         enabled = commentText.isNotBlank(),
         modifier = modifier
     ) {
-        Icon(imageVector = Icons.Outlined.KeyboardArrowUp, contentDescription = "")
+        Icon(imageVector = Icons.Outlined.ArrowUpward, contentDescription = "")
     }
 
 }

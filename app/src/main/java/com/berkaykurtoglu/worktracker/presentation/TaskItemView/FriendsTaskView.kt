@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Comment
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -61,8 +64,29 @@ fun FriendsTaskViewBottom(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 10.dp)
+                .padding(top = 6.dp)
         ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(start = 5.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Comment,
+                    contentDescription = "",
+                    modifier = Modifier.size(15.dp),
+                    tint = Color(0xFFC0C0C0)
+                )
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(
+                    text = task.comments.size.toString(),
+                    fontSize = 10.sp,
+                    color = Color(0xFF8F8F8F),
+                    fontWeight = FontWeight.Normal,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.width(110.dp)
+                )
+            }
 
             /*Canvas(modifier = Modifier.size(20.dp)){
                 drawCircle(color = Color(0xFFEEEEEE))

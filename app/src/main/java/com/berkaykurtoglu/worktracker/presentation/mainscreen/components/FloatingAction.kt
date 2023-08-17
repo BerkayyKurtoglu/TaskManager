@@ -17,7 +17,7 @@ fun FloatingAction(
     FloatingActionButton(
         onClick = {onClick()},
         containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(3.dp),
+        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(0.dp),
     ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Task")
     }

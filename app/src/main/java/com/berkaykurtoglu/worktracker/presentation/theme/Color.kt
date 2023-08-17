@@ -18,6 +18,7 @@ val DefaultColor = Color(0xFFAACAA2)
 val OrangeColor = Color(0xFFCCA9A7)
 val PurpleColor = Color(0xFFD0AFD5)
 val BlueVariantColor = Color(0xFFA2BACA)
+val YellowColor = Color(0xFFCABFA2)
 val MarkAsDoneColor = Color(0xFF5D8D6E)
 
 

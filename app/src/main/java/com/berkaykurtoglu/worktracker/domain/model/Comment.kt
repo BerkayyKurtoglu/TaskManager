@@ -8,7 +8,7 @@ data class Comment(
     var body : String = "",
     var date : Timestamp = Timestamp.now(),
     @DocumentId
-    var documentId: String = ""
+    var documentId: String = "",
 ){
 
     constructor() : this("","",date= Timestamp.now())

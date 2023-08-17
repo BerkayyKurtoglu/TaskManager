@@ -30,9 +30,13 @@ fun CardItem(
     task: Task
 ) {
 
-    Card(
-        modifier = Modifier.padding(horizontal = 25.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5))
+    ElevatedCard(
+        modifier = Modifier.padding(start = 25.dp, end = 25.dp, top = 15.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
+        elevation = CardDefaults.elevatedCardElevation(
+            defaultElevation =18.dp
+        ),
+        shape = RoundedCornerShape(20.dp)
     ) {
         Column(
             Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)

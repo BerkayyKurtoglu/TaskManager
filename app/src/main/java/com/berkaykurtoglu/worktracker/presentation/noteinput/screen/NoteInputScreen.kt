@@ -136,7 +136,7 @@ fun NoteInputScreen(
                         }
                         Toast.makeText(
                             navController.context,
-                            "Please, give a title to your task 😉",
+                            "Please, add a title to your task",
                             Toast.LENGTH_LONG
                         ).show()
                     }

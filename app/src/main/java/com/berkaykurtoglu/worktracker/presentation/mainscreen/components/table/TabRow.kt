@@ -2,14 +2,19 @@ package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DatasetLinked
+import androidx.compose.material.icons.outlined.FormatAlignLeft
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.PeopleAlt
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Task
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -39,12 +44,12 @@ fun TableRow(
     val tabs = listOf(
         TabItem(
             title = "Your Tasks",
-            icon = Icons.Outlined.Home,
+            icon = Icons.Outlined.Task,
             screen = { YourTaskScreen(navController = navController) }
         ),
         TabItem(
             title = "Friend's Tasks",
-            icon = Icons.Outlined.Person,
+            icon = Icons.Outlined.FormatAlignLeft,
             screen = { FriendsScreen(navController = navController) }
         )
 
@@ -64,7 +69,8 @@ fun TableRow(
                             height = 2.dp
                         )
                     }
-                }
+                },
+                modifier = Modifier.focusable(false)
             ) {
 
                 tabs.forEachIndexed { index, tabItem ->

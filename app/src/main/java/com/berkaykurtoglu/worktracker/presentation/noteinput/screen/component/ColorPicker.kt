@@ -1,15 +1,18 @@
 package com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,12 +27,19 @@ import com.berkaykurtoglu.worktracker.presentation.theme.BlueVariantColor
 import com.berkaykurtoglu.worktracker.presentation.theme.DefaultColor
 import com.berkaykurtoglu.worktracker.presentation.theme.OrangeColor
 import com.berkaykurtoglu.worktracker.presentation.theme.PurpleColor
+import com.berkaykurtoglu.worktracker.presentation.theme.YellowColor
+import com.maxkeppeker.sheets.core.views.Grid
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun ColorPicker(
     colorPickerState : MutableState<Boolean>,
     backGroundValue : MutableState<Color>
 ) {
+
+    val colorList = listOf(
+        DefaultColor, OrangeColor, PurpleColor, BlueVariantColor
+    )
 
     if (colorPickerState.value){
         Dialog(
@@ -37,7 +47,9 @@ fun ColorPicker(
             properties = DialogProperties()
         ) {
 
-            Card {
+            Card(
+                modifier = Modifier.wrapContentHeight()
+            ) {
 
                 Column(
                     modifier = Modifier.padding(40.dp),
@@ -48,55 +60,25 @@ fun ColorPicker(
                     Text(text = "Pick A Color and Enjoy !")
 
                     Spacer(modifier = Modifier.height(20.dp))
-
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-
-                        Canvas(
-                            modifier = Modifier.size(40.dp).clickable {
-                                backGroundValue.value = DefaultColor
+                    Row {
+                        colorList.forEachIndexed { index, color ->
+                            Canvas(
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .clickable {
+                                        backGroundValue.value = color
+                                    }
+                            ){
+                                drawCircle(
+                                    color = color
+                                )
                             }
-                        ){
-                            drawCircle(
-                                color = DefaultColor
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(15.dp))
-
-                        Canvas(modifier = Modifier.size(40.dp).clickable {
-                            backGroundValue.value = OrangeColor
-                        }
-                        ){
-                            drawCircle(
-                                color = OrangeColor
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.width(15.dp))
-
-                        Canvas(modifier = Modifier.size(40.dp).clickable {
-                            backGroundValue.value = PurpleColor
-                        }
-                        ){
-                            drawCircle(
-                                color = PurpleColor
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(15.dp))
-
-                        Canvas(modifier = Modifier.size(40.dp).clickable {
-                            backGroundValue.value = BlueVariantColor
-                        }
-                        ){
-                            drawCircle(
-                                color = BlueVariantColor
-                            )
+                            if (index != colorList.size-1)
+                            Spacer(modifier = Modifier.width(15.dp))
                         }
 
                     }
+                }
 
                 }
 
@@ -104,5 +86,3 @@ fun ColorPicker(
 
         }
     }
-
-}

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Comment
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
@@ -129,12 +130,13 @@ fun TaskItemView(
 
                     )
 
-                    if (category == Category.FRIEND_TASK) {
-                        FriendsTaskViewBottom(task = task)
-                    }
-
                 }
             }
+        }
+
+
+        if (category == Category.FRIEND_TASK) {
+            FriendsTaskViewBottom(task = task)
         }
 
         user?.let {
