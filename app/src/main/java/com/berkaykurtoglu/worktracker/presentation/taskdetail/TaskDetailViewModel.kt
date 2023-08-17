@@ -8,10 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.berkaykurtoglu.worktracker.domain.model.Comment
 import com.berkaykurtoglu.worktracker.domain.model.Task
 import com.berkaykurtoglu.worktracker.domain.usecases.UseCases
-import com.berkaykurtoglu.worktracker.presentation.noteinput.NoteInputState
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Resource
-import com.google.firebase.firestore.DocumentId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

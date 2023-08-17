@@ -3,7 +3,6 @@ package com.berkaykurtoglu.worktracker.presentation.noteinput.screen
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,12 +15,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,7 +30,6 @@ import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.Co
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.TopBarComponent
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.datePicker
 import com.berkaykurtoglu.worktracker.presentation.theme.DefaultColor
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 
 @RequiresApi(Build.VERSION_CODES.O)

@@ -1,7 +1,6 @@
 package com.berkaykurtoglu.worktracker.domain.usecases
 
 import com.berkaykurtoglu.worktracker.data.MainRepository
-import com.berkaykurtoglu.worktracker.data.SearchRepository
 import com.berkaykurtoglu.worktracker.domain.model.Task
 import javax.inject.Singleton
 

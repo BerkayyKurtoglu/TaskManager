@@ -2,7 +2,6 @@ package com.berkaykurtoglu.worktracker.data
 
 import com.berkaykurtoglu.worktracker.util.Resource
 import com.google.firebase.auth.FirebaseAuthException
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.flow

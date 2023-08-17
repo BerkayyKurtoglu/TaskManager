@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.berkaykurtoglu.worktracker.presentation.friendstask.FriendsTaskViewModel
-import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,6 +1,5 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.bottomappbar
 
-import androidx.compose.foundation.Image
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material3.BottomAppBar
@@ -12,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
-import coil.compose.rememberAsyncImagePainter
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.MainViewModel
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.FloatingAction
 import com.berkaykurtoglu.worktracker.util.Category
