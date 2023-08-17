@@ -64,7 +64,7 @@ fun TaskDetailScreen(
                 ErrorScreen(message = state.error, documentId = documentId)
             }
             if(!state.isLoading and state.error.isBlank()){
-                ActualScreen(task = state.task,pullRefreshState, documentId = documentId)
+                ActualScreen(task = state.task,pullRefreshState, documentId = documentId, navController = navController)
             }
 
             PullRefreshIndicator(refreshing = state.isLoading, state = pullRefreshState,

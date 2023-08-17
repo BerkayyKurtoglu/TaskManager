@@ -32,6 +32,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,12 +44,14 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.domain.model.Comment
 import com.berkaykurtoglu.worktracker.domain.model.Task
 import com.berkaykurtoglu.worktracker.presentation.taskdetail.TaskDetailEvent
 import com.berkaykurtoglu.worktracker.presentation.taskdetail.TaskDetailViewModel
 import com.berkaykurtoglu.worktracker.presentation.theme.MarkAsDoneColor
 import com.berkaykurtoglu.worktracker.presentation.theme.TextFieldBackGroundColor
+import com.berkaykurtoglu.worktracker.util.Screens
 import com.google.firebase.Timestamp
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
@@ -57,7 +60,8 @@ fun ActualScreen(
     task : Task,
     pullRefreshState: PullRefreshState,
     viewModel : TaskDetailViewModel = hiltViewModel(),
-    documentId: String
+    documentId: String,
+    navController: NavController
 ) {
 
     var commentText by remember {
@@ -68,6 +72,22 @@ fun ActualScreen(
 
     var visible by remember {
         mutableStateOf(true)
+    }
+
+    val state by remember {
+        viewModel.state
+    }
+
+    if (state.isDoneCompleted){
+        LaunchedEffect(key1 = Unit){
+            navController.navigate(
+                Screens.TabScreen.route
+            ){
+                popUpTo(Screens.TaskDetailScreen.route){
+                    inclusive = true
+                }
+            }
+        }
     }
 
     Column(modifier = Modifier.fillMaxSize()){
@@ -83,9 +103,11 @@ fun ActualScreen(
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth().clickable {
-                        visible = !visible
-                    }
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            visible = !visible
+                        }
                 ) {
                     Text(
                         text = "Comments (${task.comments.size})",

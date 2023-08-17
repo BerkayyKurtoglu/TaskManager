@@ -25,7 +25,7 @@ fun ErrorScreen(
         Text(
             text = error.ifBlank { "There is an error, try again" },
             textAlign = TextAlign.Center,
-            color = Color(0xFFFF4040)
+            color = Color(0xFF8F3232)
 
         )
     }

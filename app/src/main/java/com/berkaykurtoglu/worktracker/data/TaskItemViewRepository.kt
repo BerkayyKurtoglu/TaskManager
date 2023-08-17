@@ -1,5 +1,6 @@
 package com.berkaykurtoglu.worktracker.data
 
+import com.berkaykurtoglu.worktracker.domain.model.Task
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Resource
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -28,7 +29,6 @@ class TaskItemViewRepository(
         }
 
     }
-
 
 
 }

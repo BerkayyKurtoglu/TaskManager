@@ -1,5 +1,6 @@
 package com.berkaykurtoglu.worktracker.presentation.signin.screen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,15 +53,16 @@ fun LogInScreen (
 
         ActualScreen(buttonText = buttonText, viewModel = viewModel)
 
-        if (result.isLoading) CircularProgressIndicator(
-            strokeWidth = 4.dp,
-        )
+        AnimatedVisibility(visible = result.isLoading) {
+            CircularProgressIndicator(
+                strokeWidth = 4.dp,
+            )
+        }
 
-        if(result.error.isNotBlank()){
+        AnimatedVisibility(visible = result.error.isNotBlank()) {
             ErrorScreen(result.error)
             buttonText = "Retry"
         }
-
 
     }
 

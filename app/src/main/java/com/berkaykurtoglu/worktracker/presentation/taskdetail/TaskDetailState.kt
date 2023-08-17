@@ -7,6 +7,7 @@ data class TaskDetailState (
     val isLoading : Boolean = true,
     val error : String = "",
     val task : Task = Task(),
-    val isCommentUploaded : Boolean = false
+    val isCommentUploaded : Boolean = false,
+    val isDoneCompleted : Boolean = false
 
 )

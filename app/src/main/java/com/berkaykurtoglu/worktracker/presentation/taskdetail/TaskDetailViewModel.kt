@@ -67,13 +67,13 @@ class TaskDetailViewModel @Inject constructor(
             when (it) {
 
                 is Resource.Loading -> {
-                    _state.value = _state.value.copy(isLoading = true, isCommentUploaded = false, error = "")
+                    _state.value = _state.value.copy(isLoading = true, isCommentUploaded = false, error = "", isDoneCompleted = false)
                 }
                 is Resource.Success ->{
-                    _state.value = _state.value.copy(isLoading = false, isCommentUploaded = true, error = "")
+                    _state.value = _state.value.copy(isLoading = false, isCommentUploaded = true, error = "", isDoneCompleted = false)
                 }
                 is Resource.Error ->{
-                    _state.value = _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false)
+                    _state.value = _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false, isDoneCompleted = false)
                 }
 
             }
@@ -90,13 +90,13 @@ class TaskDetailViewModel @Inject constructor(
             when (it) {
 
                 is Resource.Loading -> {
-                    _state.value = _state.value.copy(isLoading = true, isCommentUploaded = false, error = "")
+                    _state.value = _state.value.copy(isLoading = true, isCommentUploaded = false, error = "", isDoneCompleted = false)
                 }
                 is Resource.Success ->{
-                    _state.value = _state.value.copy(isLoading = false, isCommentUploaded = true, error = "")
+                    _state.value = _state.value.copy(isLoading = false, isCommentUploaded = true, error = "", isDoneCompleted = true)
                 }
                 is Resource.Error ->{
-                    _state.value = _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false)
+                    _state.value = _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false, isDoneCompleted = false)
                 }
 
             }

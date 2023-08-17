@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -53,7 +54,7 @@ fun TaskItemView(
     viewModel: TaskItemViewModel = hiltViewModel(),
 ) {
 
-    var extanded by remember {
+    var extanded = remember {
         mutableStateOf(false)
     }
 
@@ -82,9 +83,9 @@ fun TaskItemView(
             modifier = Modifier.combinedClickable(
                 enabled = true,
                 onLongClick = {
-                    extanded = true
+                    extanded.value = true
                 }
-            ) {
+            ){
                 if (task.documentId.isNotBlank()){
                     navController.navigate(
                         Screens.TaskDetailScreen.route+task.documentId
@@ -138,31 +139,10 @@ fun TaskItemView(
 
         user?.let {
             if(task.user == it){
-                AnimatedVisibility(visible = extanded) {
+                AnimatedVisibility(visible = extanded.value) {
                     Spacer(modifier = Modifier.height(10.dp))
                 }
-                DropdownMenu(expanded = extanded, onDismissRequest = {
-                        extanded = false
-                    }
-                ) {
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(10.dp)
-                    ) {
-                        Icon(imageVector = Icons.Outlined.Delete, contentDescription = "")
-                        Spacer(modifier = Modifier.width(3.dp))
-                        Text(text = "Delete",
-                            Modifier
-                                .clickable {
-                                    viewModel.onEvent(TaskItemViewEvent.Delete(task.documentId))
-                                    extanded = false
-                                }
-                                .fillMaxWidth()
-                        )
-                    }
-
-                }
+                DropDownView(extanded = extanded, task = task, viewModel = viewModel)
             }
         }
     }

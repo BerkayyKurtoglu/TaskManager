@@ -22,17 +22,13 @@ class NoteInputViewModel @Inject constructor(
     val state : State<NoteInputState> = _state
 
 
-    fun addATask(
-        title: String,
-        body: String,
-        deadLine: String,
-        backGround: String,
-    ){
-        val user = useCases.getCurrentUser()
-        user?.let {
-            val task = Task(title, body, deadLine, backGround, user = it)
-            useCases.addATask(task).onEach {
+    val user = useCases.getCurrentUser()
 
+    private fun addATask(
+        task: Task
+    ){
+        user?.let {
+            useCases.addATask(task).onEach {
                 when(it) {
 
                     is Resource.Success ->{
@@ -52,6 +48,20 @@ class NoteInputViewModel @Inject constructor(
 
         } ?: {
             _state.value = _state.value.copy(errorMsg = "Please, sign out and retry again :(")
+        }
+
+    }
+
+    fun onEvent(
+        event : NoteInputEvent
+    ){
+        when(event){
+            is NoteInputEvent.addATask ->{
+                user?.let {
+                    val task = Task(event.title, event.body, event.deadLine, event.backGround, user =it)
+                    addATask(task)
+                }
+            }
         }
 
     }

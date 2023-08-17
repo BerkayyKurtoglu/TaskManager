@@ -2,6 +2,7 @@ package com.berkaykurtoglu.worktracker.presentation.mainscreen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +36,7 @@ import com.berkaykurtoglu.worktracker.util.Category
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Screens
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.delay
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -69,10 +72,12 @@ fun MainScreen(
                 }
             ){
                 Column(Modifier.padding(paddingValues = it)) {
-                    Row {
-                        Spacer(modifier = Modifier.weight(1f))
-                        SearchComponent(navController)
-                        Spacer(modifier = Modifier.weight(1f))
+                    AnimatedVisibility(visible = !viewModel.state.value.taskForOnceLoading ) {
+                        Row {
+                            Spacer(modifier = Modifier.weight(1f))
+                            SearchComponent(navController)
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
                     }
                     val index = TableRow(paddingValues = it, navController = navController)
                     when(index){

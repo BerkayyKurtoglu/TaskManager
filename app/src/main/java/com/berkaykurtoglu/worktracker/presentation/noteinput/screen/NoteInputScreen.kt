@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.berkaykurtoglu.worktracker.presentation.noteinput.NoteInputEvent
 import com.berkaykurtoglu.worktracker.presentation.noteinput.NoteInputViewModel
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.ActualScreen
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.AddButton
@@ -30,6 +31,7 @@ import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.Co
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.TopBarComponent
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.datePicker
 import com.berkaykurtoglu.worktracker.presentation.theme.DefaultColor
+import com.berkaykurtoglu.worktracker.util.Screens
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -96,7 +98,13 @@ fun NoteInputScreen(
                    ){
                        popUpTo(Screens.NoteInputScreen.route){inclusive=true}
                    }*/
-                    navController.popBackStack()
+                    navController.navigate(
+                        Screens.TabScreen.route
+                    ){
+                        popUpTo(Screens.NoteInputScreen.route){
+                            inclusive = true
+                        }
+                    }
                 }
             }
 
@@ -120,10 +128,10 @@ fun NoteInputScreen(
                         modifier = Modifier.align(Alignment.BottomCenter)
                     ) {
                         if (titleText.value.isNotBlank()) {
-                            viewModel.addATask(
+                            viewModel.onEvent(NoteInputEvent.addATask(
                                 titleText.value, bodyText.value, date.value,
                                 backGroundColor.value.toArgb().toString()
-                            )
+                            ))
                             return@AddButton
                         }
                         Toast.makeText(

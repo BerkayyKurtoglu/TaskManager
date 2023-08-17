@@ -24,6 +24,13 @@ class SignInScreenViewModel @Inject constructor(
         password : String
     ){
 
+        if (email.isBlank() or password.isBlank()){
+            _state.value = _state.value.copy(isLoading = false,
+                    error = "Please fill email and password"
+                )
+            return
+        }
+
         useCases.signIn(email, password).onEach {
 
             when(it) {
