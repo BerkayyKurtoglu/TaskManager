@@ -45,7 +45,7 @@ import com.berkaykurtoglu.worktracker.util.Screens
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-OP
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
     ExperimentalAnimationApi::class
 )
