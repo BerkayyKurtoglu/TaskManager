@@ -1,6 +1,5 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen.components
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -46,8 +45,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
-    ExperimentalAnimationApi::class
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class
 )
 @Composable
 fun SearchComponent(

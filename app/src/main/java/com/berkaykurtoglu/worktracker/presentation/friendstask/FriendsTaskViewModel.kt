@@ -20,48 +20,61 @@ class FriendsTaskViewModel @Inject constructor(
     val state : State<FriendsTaskState> = _state
 
     init {
+
         getFriendsUnmarkedTasks()
     }
 
     fun getFriendsMarkedTasks(){
 
-        useCases.getFriendsMarkedTasksUseCase().onEach {
+        useCases.getCurrentUser()?.let {
+            useCases.getFriendsMarkedTasksUseCase(it).onEach {
 
-            when(it) {
-                is Resource.Success ->{
-                    _state.value = _state.value.copy(isLoading = false, tasks = it.data!!)
+                when(it) {
+                    is Resource.Success ->{
+                        _state.value = _state.value.copy(isLoading = false, tasks = it.data!!)
+                    }
+                    is Resource.Error ->{
+                        _state.value = _state.value.copy(isLoading = false, error = it.message!!)
+                    }
+                    is Resource.Loading ->{
+                        _state.value = _state.value.copy(isLoading = true, error = "")
+                    }
+                    else ->{}
                 }
-                is Resource.Error ->{
-                    _state.value = _state.value.copy(isLoading = false, error = it.message!!)
-                }
-                is Resource.Loading ->{
-                    _state.value = _state.value.copy(isLoading = true, error = "")
-                }
-                else ->{}
-            }
 
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }?:{
+            _state.value = _state.value.copy(isLoading = false, error = "Current user" +
+                    "Could not get, try later", tasks = listOf()
+            )
+        }
 
     }
 
     fun getFriendsUnmarkedTasks(){
 
-        useCases.getFriendsUnmarkedTasksUseCase().onEach {
+        useCases.getCurrentUser()?.let {
+            useCases.getFriendsUnmarkedTasksUseCase(it).onEach {
 
-            when(it) {
-                is Resource.Success ->{
-                    _state.value = _state.value.copy(isLoading = false, tasks = it.data!!)
+                when(it) {
+                    is Resource.Success ->{
+                        _state.value = _state.value.copy(isLoading = false, tasks = it.data!!)
+                    }
+                    is Resource.Error ->{
+                        _state.value = _state.value.copy(isLoading = false, error = it.message!!)
+                    }
+                    is Resource.Loading ->{
+                        _state.value = _state.value.copy(isLoading = true, error = "")
+                    }
+                    else ->{}
                 }
-                is Resource.Error ->{
-                    _state.value = _state.value.copy(isLoading = false, error = it.message!!)
-                }
-                is Resource.Loading ->{
-                    _state.value = _state.value.copy(isLoading = true, error = "")
-                }
-                else ->{}
-            }
 
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }?:{
+            _state.value = _state.value.copy(isLoading = false, error = "Current user" +
+                    "Could not get, try later", tasks = listOf()
+            )
+        }
 
     }
 

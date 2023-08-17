@@ -8,6 +8,6 @@ class GetFriendsTasksMarkedUseCase(
     private val friendsTasksRepository : FriendsTaskRepository
 ) {
 
-    operator fun invoke() = friendsTasksRepository.getFriendsMarkedTasks()
+    operator fun invoke(email : String) = friendsTasksRepository.getFriendsMarkedTasks(email)
 
 }

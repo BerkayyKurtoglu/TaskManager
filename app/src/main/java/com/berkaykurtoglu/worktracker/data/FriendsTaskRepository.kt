@@ -16,13 +16,14 @@ class FriendsTaskRepository(
 ) {
 
     fun getFriendsMarkedTasks(
-
+        email : String
     ) = flow<Resource<List<Task>>> {
 
         emit(Resource.Loading())
         try {
 
             val tasks = firebase.firestore.collection(Constants.TASK_COLLECTION)
+                .whereNotEqualTo("user",email)
                 .whereEqualTo("isMarked",true).get().await().toObjects(Task::class.java)
             emit(Resource.Success(data = tasks))
 
@@ -32,11 +33,14 @@ class FriendsTaskRepository(
 
     }
 
-    fun getUsersUnmarkedTasks() = flow<Resource<List<Task>>> {
+    fun getUsersUnmarkedTasks(
+        email: String
+    ) = flow<Resource<List<Task>>> {
         emit(Resource.Loading())
         try {
 
             val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
+                .whereNotEqualTo("user",email)
                 .whereEqualTo("isMarked",false).get().await().toObjects(Task::class.javaObjectType)
             emit(Resource.Success(taskList))
 
