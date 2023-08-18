@@ -1,8 +1,7 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.bottomappbar
 
+import android.widget.ImageButton
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -17,7 +16,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.MainViewModel
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.FloatingAction
 import com.berkaykurtoglu.worktracker.util.Category
@@ -54,8 +56,6 @@ fun BottomBarScreen (
             ) {
                 Icon(Icons.Outlined.ExitToApp,"Exit")
             }
-
-
 
         },
         floatingActionButton = {

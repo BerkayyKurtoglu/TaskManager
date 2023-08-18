@@ -12,7 +12,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,6 +26,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.ActualScreen
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.SearchComponent
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.bottomappbar.BottomBarScreen
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table.TableRow
@@ -35,8 +35,8 @@ import com.berkaykurtoglu.worktracker.presentation.taskdetail.screen.TaskDetailS
 import com.berkaykurtoglu.worktracker.util.Category
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Screens
+import com.berkaykurtoglu.worktracker.util.SlideInOutAnim
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import kotlinx.coroutines.delay
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -46,7 +46,7 @@ fun MainScreen(
     viewModel: MainViewModel = hiltViewModel(),
 ) {
 
-    var category by remember {
+    var category = remember {
         mutableStateOf(Category.YOUR_TASK)
     }
     val navController = rememberNavController()
@@ -66,30 +66,18 @@ fun MainScreen(
     NavHost(navController = navController, startDestination = Screens.TabScreen.route) {
 
         composable(Screens.TabScreen.route){
-            Scaffold(
-                bottomBar = {
-                    BottomBarScreen(viewModel, signOutNavController = signOutNavController,navController,category)
-                }
-            ){
-                Column(Modifier.padding(paddingValues = it)) {
-                    AnimatedVisibility(visible = !viewModel.state.value.taskForOnceLoading ) {
-                        Row {
-                            Spacer(modifier = Modifier.weight(1f))
-                            SearchComponent(navController)
-                            Spacer(modifier = Modifier.weight(1f))
-                        }
-                    }
-                    val index = TableRow(paddingValues = it, navController = navController)
-                    when(index){
-                        0 ->{category = Category.YOUR_TASK}
-                        1 -> {category = Category.FRIEND_TASK}
-                    }
-                }
-            }
+            ActualScreen(
+                signOutNavController = signOutNavController,
+                viewModel = viewModel,
+                inScreenNavController = navController,
+                category = category
+            )
         }
 
         composable(Screens.NoteInputScreen.route){
-            NoteInputScreen(navController, signOutNavController = signOutNavController)
+            SlideInOutAnim {
+                NoteInputScreen(navController, signOutNavController = signOutNavController)
+            }
         }
 
         composable(
