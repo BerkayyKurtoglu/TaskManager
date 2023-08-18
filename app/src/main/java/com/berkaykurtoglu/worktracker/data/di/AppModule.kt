@@ -18,6 +18,7 @@ import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsTasksMarkedUseCa
 import com.berkaykurtoglu.worktracker.domain.usecases.GetFriendsUnmarkedTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetTaskDetailUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.GetTasksOnceUseCase
+import com.berkaykurtoglu.worktracker.domain.usecases.GetUserInfo
 import com.berkaykurtoglu.worktracker.domain.usecases.MarkAsDoneUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.SearchTasksUseCase
 import com.berkaykurtoglu.worktracker.domain.usecases.SignInUseCase
@@ -118,7 +119,8 @@ object AppModule {
         markAsDoneUseCase = MarkAsDoneUseCase(taskDetailRepository),
         getTasksOnceUseCase = GetTasksOnceUseCase(mainRepository),
         searchTasksUseCase = SearchTasksUseCase(mainRepository),
-        deleteATask = DeleteATask(taskItemViewRepository)
+        deleteATask = DeleteATask(taskItemViewRepository),
+        getUserInfo = GetUserInfo(mainRepository)
 
     )
 

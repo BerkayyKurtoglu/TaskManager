@@ -15,6 +15,7 @@ data class UseCases(
     val markAsDoneUseCase: MarkAsDoneUseCase,
     val getTasksOnceUseCase: GetTasksOnceUseCase,
     val searchTasksUseCase: SearchTasksUseCase,
-    val deleteATask: DeleteATask
+    val deleteATask: DeleteATask,
+    val getUserInfo: GetUserInfo
 
 )

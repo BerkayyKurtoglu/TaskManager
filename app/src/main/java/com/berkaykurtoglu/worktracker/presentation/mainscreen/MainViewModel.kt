@@ -18,8 +18,8 @@ class MainViewModel @Inject constructor(
     private val useCases: UseCases
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(SearchScreenState())
-    val state : State<SearchScreenState> = _state
+    private val _state = mutableStateOf(MainScreenState())
+    val state : State<MainScreenState> = _state
 
     init {
         getTasksOnce()
@@ -49,6 +49,30 @@ class MainViewModel @Inject constructor(
 
     }
 
+    fun getUserInfo(
+        email : String
+    ){
+        useCases.getUserInfo(email).onEach {
+
+            when(it){
+
+                is Resource.Loading ->{
+                    _state.value = _state.value.copy(dialogIsLoading = true)
+                }
+                is Resource.Success ->{
+                    it.data?.let {
+                        _state.value = _state.value.copy(dialogUser = it, dialogIsLoading = false)
+                    } ?: {
+                        _state.value = _state.value.copy(dialogError = "Something went wrong",
+                            dialogIsLoading = false)
+                    }
+                }
+                is Resource.Error ->{
+                    _state.value = _state.value.copy(dialogError = it.message ?:"Something went wrong", dialogIsLoading = false)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
 
     fun getTasksOnce() {
         useCases.getTasksOnceUseCase().onEach {
@@ -68,7 +92,23 @@ class MainViewModel @Inject constructor(
     }
 
 
+    fun onEvent(
+        event : MainEvent
+    ){
+        when(event){
+            is MainEvent.Profile ->{
+                getUserEmail()?.let {
+                    getUserInfo(it)
+                } ?: {
+                    _state.value = _state.value.copy(dialogError = "Something went wrong")
+                }
+            }
+        }
+    }
+
     fun signOut() = useCases.signOutUseCase()
+
+    fun getUserEmail() = useCases.getCurrentUser()
 
 
 

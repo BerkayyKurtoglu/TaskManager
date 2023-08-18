@@ -1,5 +1,6 @@
 package com.berkaykurtoglu.worktracker.data
 
+import com.berkaykurtoglu.worktracker.domain.model.User
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Resource
 import com.google.firebase.auth.ktx.auth
@@ -21,6 +22,21 @@ class MainRepository(
     }
 
     fun getCurrentUser() :String? = firebase.auth.currentUser?.email
+
+    fun getUsersInfo(
+        email : String
+    ) : Flow<Resource<User?>> = flow {
+
+        emit(Resource.Loading())
+        try {
+            val user = firebase.firestore.collection(Constants.USER_COLLECTION).document(email)
+                .get().await().toObject(User::class.java)
+            emit(Resource.Success(user))
+        }catch (e : FirebaseFirestoreException){
+            emit(Resource.Error(e.localizedMessage ?: "Something went wrong"))
+        }
+
+    }
 
     fun searchForTasks(
         list : List<com.berkaykurtoglu.worktracker.domain.model.Task>,
