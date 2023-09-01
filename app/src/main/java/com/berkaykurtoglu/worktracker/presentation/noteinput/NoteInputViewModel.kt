@@ -30,19 +30,15 @@ class NoteInputViewModel @Inject constructor(
         user?.let {
             useCases.addATask(task).onEach {
                 when(it) {
-
                     is Resource.Success ->{
                         _state.value = _state.value.copy(isLoading = false, isSuccesfull = true)
                     }
-
                     is Resource.Loading ->{
                         _state.value = _state.value.copy(isLoading = true, isSuccesfull = false)
                     }
-
                     is Resource.Error ->{
                         _state.value = _state.value.copy(isLoading = false, errorMsg = it.message ?: "Error")
                     }
-
                 }
             }.launchIn(viewModelScope)
 

@@ -6,7 +6,7 @@ class GetFriendsUnmarkedTasksUseCase(
     private val friendsTaskRepository: FriendsTaskRepository
 ) {
 
-    operator fun invoke(email : String) = friendsTaskRepository.getUsersUnmarkedTasks(email)
+    operator fun invoke(email : String) = friendsTaskRepository.getFriendsUnmarkedTasks(email)
 
 
 }

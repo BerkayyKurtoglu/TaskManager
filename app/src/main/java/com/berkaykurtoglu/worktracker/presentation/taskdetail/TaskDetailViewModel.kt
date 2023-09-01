@@ -35,9 +35,7 @@ class TaskDetailViewModel @Inject constructor(
     ){
 
         useCases.getTaskDetailUseCase(documentId).onEach {
-
             when(it) {
-
                 is Resource.Success ->{
                     _state.value = _state.value.copy(isLoading = false, task = it.data!!, error = "")
                 }
@@ -47,9 +45,7 @@ class TaskDetailViewModel @Inject constructor(
                 is Resource.Loading ->{
                     _state.value = _state.value.copy(isLoading = true, task = Task(), error = "")
                 }
-
             }
-
         }.launchIn(viewModelScope)
 
     }
@@ -63,21 +59,20 @@ class TaskDetailViewModel @Inject constructor(
     ){
 
         useCases.addACommentUseCase(comment, documentId).onEach {
-
             when (it) {
-
                 is Resource.Loading -> {
-                    _state.value = _state.value.copy(isLoading = true, isCommentUploaded = false, error = "", isDoneCompleted = false)
+                    _state.value =
+                        _state.value.copy(isLoading = true, isCommentUploaded = false, error = "", isDoneCompleted = false)
                 }
                 is Resource.Success ->{
-                    _state.value = _state.value.copy(isLoading = false, isCommentUploaded = true, error = "", isDoneCompleted = false)
+                    _state.value =
+                        _state.value.copy(isLoading = false, isCommentUploaded = true, error = "", isDoneCompleted = false)
                 }
                 is Resource.Error ->{
-                    _state.value = _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false, isDoneCompleted = false)
+                    _state.value =
+                        _state.value.copy(isLoading = false, error = it.message!!, isCommentUploaded = false, isDoneCompleted = false)
                 }
-
             }
-
         }.launchIn(viewModelScope)
 
     }
@@ -108,7 +103,6 @@ class TaskDetailViewModel @Inject constructor(
     fun onEvent(
         event : TaskDetailEvent
     ){
-
         when(event) {
             is TaskDetailEvent.AddComment ->{
                 addAComment(event.comment,event.taskDocumentId)
@@ -117,7 +111,6 @@ class TaskDetailViewModel @Inject constructor(
                 markTaskAsDone(event.taskDocumentId)
             }
         }
-
     }
 
 

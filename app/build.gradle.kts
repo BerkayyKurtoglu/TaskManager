@@ -91,19 +91,11 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
-    //Dagger - Hilt
-    /*implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
-    implementation ("androidx.hilt:hilt-work:1.0.0")
-    implementation ("androidx.work:work-runtime-ktx:2.8.1")*/
-
-
     // Coil
     implementation ("io.coil-kt:coil-compose:2.4.0")
 
     //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
 

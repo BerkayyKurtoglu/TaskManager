@@ -35,8 +35,6 @@ fun LogInScreen (
     var buttonText by remember {
         mutableStateOf("Sign In")
     }
-
-
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -58,7 +56,6 @@ fun LogInScreen (
                 strokeWidth = 4.dp,
             )
         }
-
         AnimatedVisibility(visible = result.error.isNotBlank()) {
             ErrorScreen(result.error)
             buttonText = "Retry"

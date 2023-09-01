@@ -16,7 +16,5 @@ data class Task(
     var isMarked : Boolean = false
 
 ) {
-
     constructor() : this("", "", "", "", listOf(), "",isMarked = false)
-
 }

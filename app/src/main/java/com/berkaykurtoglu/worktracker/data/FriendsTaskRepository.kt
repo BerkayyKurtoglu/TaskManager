@@ -33,13 +33,14 @@ class FriendsTaskRepository(
 
     }
 
-    fun getUsersUnmarkedTasks(
+    fun getFriendsUnmarkedTasks(
         email: String
     ) = flow<Resource<List<Task>>> {
         emit(Resource.Loading())
         try {
 
-            val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
+            val taskList =
+                firebase.firestore.collection(Constants.TASK_COLLECTION)
                 .whereNotEqualTo("user",email)
                 .whereEqualTo("isMarked",false).get().await().toObjects(Task::class.javaObjectType)
             emit(Resource.Success(taskList))

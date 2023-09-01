@@ -56,8 +56,6 @@ fun TaskItemView(
     }
 
     Column{
-
-
         if (category == Category.FRIEND_TASK){
             FriendsTaskViewTop(task = task)
         }

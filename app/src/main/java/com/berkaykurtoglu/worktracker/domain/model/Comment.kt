@@ -10,8 +10,5 @@ data class Comment(
     @DocumentId
     var documentId: String = "",
 ){
-
     constructor() : this("","",date= Timestamp.now())
-
-
 }

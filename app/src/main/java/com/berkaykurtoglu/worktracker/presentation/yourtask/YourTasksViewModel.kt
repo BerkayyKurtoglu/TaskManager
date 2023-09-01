@@ -27,7 +27,6 @@ class YourTasksViewModel @Inject constructor(
 
     fun getMarkedTasks(){
         useCases.getCurrentUser()?.let {
-
             useCases.getCurrentUsersMarkedTasks(it).onEach {
 
                 when(it) {
@@ -44,9 +43,7 @@ class YourTasksViewModel @Inject constructor(
                 }
 
             }.launchIn(viewModelScope)
-
         }
-
     }
 
     fun getUnmarkedTasks(){

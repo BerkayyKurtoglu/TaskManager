@@ -12,8 +12,7 @@ import javax.inject.Singleton
 class SignInRepository (
     private val firebase: Firebase
 ) {
-
-    fun createUserWithEmailAndPassword(
+    fun signInUserWithEmailAndPassword(
         email: String,
         password: String
     )   = flow<Resource<Boolean>> {
@@ -25,10 +24,7 @@ class SignInRepository (
             emit(Resource.Error(e.localizedMessage ?: "Something went wrong"))
         }
     }
-
-    fun getCurrentUser(
-
-    ) = firebase.auth.currentUser
+    fun getCurrentUser() = firebase.auth.currentUser
 
 
 /*{

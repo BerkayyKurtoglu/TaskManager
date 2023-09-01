@@ -32,9 +32,7 @@ class SignInScreenViewModel @Inject constructor(
         }
 
         useCases.signIn(email, password).onEach {
-
             when(it) {
-
                 is Resource.Success ->{
                     _state.value = _state.value.copy(isLoading = false, isSignedIn = true)
                 }
@@ -44,12 +42,11 @@ class SignInScreenViewModel @Inject constructor(
                 }
 
                 is Resource.Error ->{
-                    _state.value = _state.value.copy(isLoading = false, error = it.message ?: "Error", isSignedIn = false)
+                    _state.value = _state.value.copy(
+                        isLoading = false, error = it.message ?: "Error", isSignedIn = false)
                 }
 
             }
-
-
         }.launchIn(viewModelScope)
 
 

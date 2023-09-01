@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -73,10 +74,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
-
-
 
 
 @Preview(showBackground = true)

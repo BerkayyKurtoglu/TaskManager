@@ -29,7 +29,8 @@ class MainRepository(
 
         emit(Resource.Loading())
         try {
-            val user = firebase.firestore.collection(Constants.USER_COLLECTION).document(email)
+            val user =
+                firebase.firestore.collection(Constants.USER_COLLECTION).document(email)
                 .get().await().toObject(User::class.java)
             emit(Resource.Success(user))
         }catch (e : FirebaseFirestoreException){
@@ -45,7 +46,8 @@ class MainRepository(
 
         emit(Resource.Loading())
         try {
-            val filteredList = list.filter { it.title.contains(query,true) }
+            val filteredList =
+                list.filter { it.title.contains(query,true) }
             emit(Resource.Success(filteredList))
         }catch (e : FirebaseFirestoreException){
             emit(Resource.Error(e.localizedMessage ?: "Something went wrong"))
@@ -58,7 +60,8 @@ class MainRepository(
 
         emit(Resource.Loading())
         try {
-            val tasks = firebase.firestore.collection(Constants.TASK_COLLECTION)
+            val tasks =
+                firebase.firestore.collection(Constants.TASK_COLLECTION)
                 .get().await().toObjects(com.berkaykurtoglu.worktracker.domain.model.Task::class.java)
             emit(Resource.Success(tasks))
         }catch (e : FirebaseFirestoreException){
