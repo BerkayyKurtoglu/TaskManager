@@ -1,4 +1,4 @@
-# TaskManager
+# TaskManager 📝
 
 | LogIn Screen | Your Tasks | Friend's Tasks |
 |---------|---------|---------|
