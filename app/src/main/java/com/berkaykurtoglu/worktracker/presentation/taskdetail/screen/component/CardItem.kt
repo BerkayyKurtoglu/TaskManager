@@ -1,6 +1,7 @@
 package com.berkaykurtoglu.worktracker.presentation.taskdetail.screen.component
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,7 +41,7 @@ fun CardItem(
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 0.dp
         ),
-        shape = RoundedCornerShape(30.dp),
+        shape = RoundedCornerShape(35.dp),
     ) {
         Column(
             Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)

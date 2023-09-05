@@ -3,6 +3,8 @@ package com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,8 +16,11 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.R
 import com.maxkeppeker.sheets.core.models.base.UseCaseState
@@ -33,7 +38,9 @@ fun TopBarComponent(
 
 
     TopAppBar(
-        modifier = Modifier.background(backGroundColor),
+        modifier = Modifier
+            .clip(RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp))
+            .background(backGroundColor),
         title = {
                 Text(text = date)
         },

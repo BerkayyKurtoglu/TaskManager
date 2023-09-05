@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.presentation.friendstask.FriendsScreen
-import com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table.TabItem
 import com.berkaykurtoglu.worktracker.presentation.yourtask.screen.components.YourTaskScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -82,6 +81,7 @@ fun TableRow(
                 }
 
             }
+
 
             HorizontalPager(
                 pageCount = tabs.size,

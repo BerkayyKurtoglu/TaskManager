@@ -6,6 +6,7 @@ import com.berkaykurtoglu.worktracker.util.Resource
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Singleton
@@ -20,6 +21,7 @@ class YourTaskRepository(
         email : String
     ) = flow<Resource<List<Task>>> {
         emit(Resource.Loading())
+        delay(500)
         try {
 
             val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
@@ -37,6 +39,7 @@ class YourTaskRepository(
         email : String
     ) = flow<Resource<List<Task>>> {
         emit(Resource.Loading())
+        delay(500)
         try {
 
             val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)

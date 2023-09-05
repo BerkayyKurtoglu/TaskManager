@@ -1,5 +1,9 @@
 package com.berkaykurtoglu.worktracker.presentation.mainscreen.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -26,6 +30,7 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,12 +55,18 @@ import kotlinx.coroutines.launch
 @Composable
 fun SearchComponent(
     navController: NavController,
+    modifier: Modifier = Modifier,
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
 
     val state by remember {
         mainViewModel.state
     }
+
+    var hint by remember {
+        mutableStateOf(mainViewModel.getUserEmail() ?: "Search")
+    }
+
 
     var query by remember {
         mutableStateOf("")
@@ -72,6 +84,7 @@ fun SearchComponent(
     if (query.isBlank()) mainViewModel.clearTheList()
 
     SearchBar(
+        modifier = modifier,
         query = query,
         onQueryChange = {
                         query = it
@@ -102,7 +115,9 @@ fun SearchComponent(
                 contentDescription = "",
                 modifier = Modifier.clickable { isActive = false })
         },
-        placeholder = { Text(text = "Search")},
+        placeholder = {
+            Text(text = if (isActive) "Search" else hint)
+        },
         trailingIcon = {
             if (isActive){
                 if (query.isNotBlank()){

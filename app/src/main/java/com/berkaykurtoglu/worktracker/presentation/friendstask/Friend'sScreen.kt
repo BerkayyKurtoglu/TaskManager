@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.presentation.friendstask.screen.components.FilterCategorie
 import com.berkaykurtoglu.worktracker.presentation.friendstask.screen.components.FilterChips
 import com.berkaykurtoglu.worktracker.presentation.friendstask.screen.components.FriendsTasksLazyColumn
+import kotlinx.coroutines.coroutineScope
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -35,15 +36,14 @@ fun FriendsScreen(
         FilterCategorie.UnMarkedChip,FilterCategorie.MarkedChip
     )
 
-    val selectedItem = remember {
-        mutableStateOf(filterList[0])
+    val chipIndex = remember {
+        viewModel.chipIndex
     }
-
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = state.isLoading,
         onRefresh = {
-            if (selectedItem.value == FilterCategorie.MarkedChip) viewModel.getFriendsMarkedTasks()
+            if (chipIndex.value == FilterCategorie.MarkedChip ) viewModel.getFriendsMarkedTasks()
             else viewModel.getFriendsUnmarkedTasks()
         },
         refreshThreshold = 44.dp
@@ -59,7 +59,8 @@ fun FriendsScreen(
     ) {
 
         Column(modifier = Modifier.fillMaxSize()) {
-            FilterChips(filterList,selectedItem)
+            FilterChips(filterList,chipIndex)
+
 
             if (state.error.isNotBlank()){
                 TODO()

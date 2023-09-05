@@ -44,12 +44,12 @@ fun MainScreen(
     val systemUiController = rememberSystemUiController()
 
 
-    SideEffect {
+    /*SideEffect {
         systemUiController.setStatusBarColor(
             color = Color.LightGray,
             darkIcons = true
         )
-    }
+    }*/
 
     NavHost(navController = navController, startDestination = Screens.TabScreen.route) {
 

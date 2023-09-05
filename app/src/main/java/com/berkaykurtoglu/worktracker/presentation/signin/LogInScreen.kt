@@ -1,9 +1,10 @@
-package com.berkaykurtoglu.worktracker.presentation.signin.screen
+package com.berkaykurtoglu.worktracker.presentation.signin
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -14,10 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.berkaykurtoglu.worktracker.presentation.signin.SignInScreenViewModel
 import com.berkaykurtoglu.worktracker.presentation.signin.screen.components.ActualScreen
 import com.berkaykurtoglu.worktracker.presentation.signin.screen.components.ErrorScreen
 import com.berkaykurtoglu.worktracker.util.Screens
@@ -27,6 +29,8 @@ fun LogInScreen (
     navController: NavController,
     viewModel : SignInScreenViewModel = hiltViewModel()
 ) {
+
+    val haptic = LocalHapticFeedback.current
 
     val result by remember {
         viewModel.state
@@ -40,6 +44,7 @@ fun LogInScreen (
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
+            .imePadding()
             .padding(horizontal = 25.dp)
     ) {
 
@@ -58,6 +63,7 @@ fun LogInScreen (
         }
         AnimatedVisibility(visible = result.error.isNotBlank()) {
             ErrorScreen(result.error)
+            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
             buttonText = "Retry"
         }
 

@@ -18,6 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.MainEvent
 import com.berkaykurtoglu.worktracker.presentation.mainscreen.MainViewModel
@@ -32,9 +34,10 @@ fun BottomBarScreen (
     viewModel: MainViewModel,
     signOutNavController: NavController,
     navController : NavController,
-    category: Category,
-    dialogState : MutableState<Boolean>
+    category: Category
 ) {
+
+    var haptic = LocalHapticFeedback.current
 
     var isVisible by remember {
         mutableStateOf(true)
@@ -61,17 +64,6 @@ fun BottomBarScreen (
             }
 
 
-            IconButton(onClick = {
-                dialogState.value = true
-                viewModel.onEvent(MainEvent.Profile)
-            }) {
-                Icon(
-                    imageVector = Icons.Outlined.Image,
-                    contentDescription = ""
-                )
-            }
-
-
         },
         floatingActionButton = {
             AnimatedVisibility(
@@ -80,9 +72,11 @@ fun BottomBarScreen (
                 exit = fadeOut()+ slideOutHorizontally()
             ) {
                 FloatingAction {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     navController.navigate(Screens.NoteInputScreen.route)
                 }
             }
+
         }
 
     )

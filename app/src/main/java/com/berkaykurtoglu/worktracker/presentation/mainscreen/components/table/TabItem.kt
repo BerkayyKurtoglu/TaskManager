@@ -1,4 +1,4 @@
-package com.berkaykurtoglu.worktracker.presentation.mainscreen.screen.component.table
+package com.berkaykurtoglu.worktracker.presentation.mainscreen.components.table
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector

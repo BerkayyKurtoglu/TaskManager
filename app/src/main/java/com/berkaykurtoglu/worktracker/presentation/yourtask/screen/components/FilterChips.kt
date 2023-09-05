@@ -29,7 +29,6 @@ fun FilterChips(
 ) {
 
 
-
     LazyRow(
         contentPadding = PaddingValues(start = 20.dp),
         verticalAlignment = Alignment.CenterVertically

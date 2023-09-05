@@ -33,19 +33,19 @@ fun YourTaskScreen(
         viewModel.state
     }
 
+    val chipIndex = remember {
+        viewModel.chipIndex
+    }
+
     val filterList = listOf<FilterCategorie>(
         FilterCategorie.UnMarkedChip, FilterCategorie.MarkedChip
     )
-
-    val selectedItem = remember {
-        mutableStateOf(filterList[0])
-    }
 
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = state.isLoading,
         onRefresh = {
-            if (selectedItem.value == FilterCategorie.MarkedChip) viewModel.getMarkedTasks()
+            if (chipIndex.value == FilterCategorie.MarkedChip) viewModel.getMarkedTasks()
             else viewModel.getUnmarkedTasks()
         },
         refreshThreshold = 44.dp
@@ -64,7 +64,7 @@ fun YourTaskScreen(
             verticalArrangement = Arrangement.Top,
             modifier = Modifier.fillMaxSize()
         ) {
-            FilterChips(filterList,selectedItem)
+            FilterChips(filterList,chipIndex)
 
             if (state.error.isNotBlank()){
                 TODO()
