@@ -11,8 +11,7 @@
 
 | Task Color | Delete Task | Search Tasks |
 |----------|---------|---------|
-| ![ColorPicker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/ee3c1c61-065a-423d-8b1b-34e17883e30e) | ![Delete](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/2bd27f2c-bac0-4a72-8f44-9cfdcb6afbee) | ![Search](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/254515ee-d9da-469a-a00e-4e3cbf0ffc86)
- |
+| ![ColorPicker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/ee3c1c61-065a-423d-8b1b-34e17883e30e) | ![Delete](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/2bd27f2c-bac0-4a72-8f44-9cfdcb6afbee) | ![Search](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/254515ee-d9da-469a-a00e-4e3cbf0ffc86)|
 
 
 
