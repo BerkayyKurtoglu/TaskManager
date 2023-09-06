@@ -1,5 +1,6 @@
 package com.berkaykurtoglu.worktracker.presentation.friendstask
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,12 +8,14 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -66,8 +69,17 @@ fun FriendsScreen(
                 TODO()
             }else{
                 //Show lazy column
-                if(state.tasks.isEmpty()){
-
+                if(state.tasks.isEmpty() && !state.isLoading){
+                    Column(
+                        Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "There is no tasks from your friends 🤔",
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
                 }else{
                     FriendsTasksLazyColumn(list = state.tasks,navController)
                 }

@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 
                 SideEffect {
                     systemController.setSystemBarsColor(
-                        color = Color.Transparent,
+                        color = md_theme_light_surfaceVariant ,
                         darkIcons = true
                     )
                     systemController.setNavigationBarColor(

@@ -59,13 +59,10 @@ fun TaskItemView(
         viewModel.state
     }
 
-    var backGround = remember {
-        mutableStateOf(0xffffff)
-    }
 
-    LaunchedEffect(key1 = Unit){
+    /*LaunchedEffect(key1 = Unit){
         backGround.value = task.backGround.toInt()
-    }
+    }*/
 
 
     Column{
@@ -80,7 +77,7 @@ fun TaskItemView(
                 pressedElevation = 10.dp,
             ),
             colors = CardDefaults.cardColors(
-                containerColor = Color(backGround.value)
+                containerColor = Color(task.backGround.toInt())
             ),
             modifier = Modifier.combinedClickable(
                 enabled = true,
@@ -143,10 +140,7 @@ fun TaskItemView(
             }
         }
 
-
-        if (category == Category.FRIEND_TASK) {
-            FriendsTaskViewBottom(task = task)
-        }
+        FriendsTaskViewBottom(task = task)
 
         user?.let {
             if(task.user == it){

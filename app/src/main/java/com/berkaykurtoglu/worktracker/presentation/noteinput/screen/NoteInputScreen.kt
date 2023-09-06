@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Surface
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -38,6 +39,7 @@ import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.Co
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.TopBarComponent
 import com.berkaykurtoglu.worktracker.presentation.noteinput.screen.component.datePicker
 import com.berkaykurtoglu.worktracker.presentation.theme.DefaultColor
+import com.berkaykurtoglu.worktracker.presentation.theme.md_theme_light_surfaceVariant
 import com.berkaykurtoglu.worktracker.util.Screens
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 
@@ -86,73 +88,81 @@ fun NoteInputScreen(
 
     ) {
 
-        Column(
-            modifier = Modifier
-                .padding(it)
-                .fillMaxSize()
-                .background(backGroundColor.value)
+        Surface(
+            color = md_theme_light_surfaceVariant
         ) {
+            Column(
+                modifier = Modifier
+                    .padding(it)
+                    .fillMaxSize()
+                    .background(backGroundColor.value)
+            ) {
 
-            if (state.value.errorMsg.isNotBlank()){
-                LaunchedEffect(key1 = Unit){
-                    navController.popBackStack()
+                if (state.value.errorMsg.isNotBlank()){
+                    LaunchedEffect(key1 = Unit){
+                        navController.popBackStack()
+                    }
+                    Toast.makeText(navController.context,state.value.errorMsg,Toast.LENGTH_LONG).show()
                 }
-                Toast.makeText(navController.context,state.value.errorMsg,Toast.LENGTH_LONG).show()
-            }
 
-            if (state.value.isSuccesfull){
-                LaunchedEffect(key1 = Unit){
-                   /*signOutNavController.navigate(
-                       Screens.MainScreen.route+"{}"
-                   ){
-                       popUpTo(Screens.NoteInputScreen.route){inclusive=true}
-                   }*/
-                    navController.navigate(
-                        Screens.TabScreen.route
-                    ){
-                        popUpTo(Screens.NoteInputScreen.route){
-                            inclusive = true
+                if (state.value.isSuccesfull){
+                    LaunchedEffect(key1 = Unit){
+                        /*signOutNavController.navigate(
+                            Screens.MainScreen.route+"{}"
+                        ){
+                            popUpTo(Screens.NoteInputScreen.route){inclusive=true}
+                        }*/
+                        navController.navigate(
+                            Screens.TabScreen.route
+                        ){
+                            popUpTo(Screens.NoteInputScreen.route){
+                                inclusive = true
+                            }
                         }
                     }
                 }
-            }
 
-            ColorPicker(colorPickerState = colorPickerState,backGroundColor)
+                ColorPicker(colorPickerState = colorPickerState,backGroundColor)
 
-            ActualScreen(
-                titleText = titleText,
-                bodyText = bodyText,
-                modifier = Modifier.weight(1f)
-            )
+                ActualScreen(
+                    titleText = titleText,
+                    bodyText = bodyText,
+                    modifier = Modifier.weight(1f)
+                )
 
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 25.dp)
-            ) {
-                if (state.value.isLoading) CircularProgressIndicator()
-                else {
-                    AddButton(
-                        modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding()
-                    ) {
-                        if (titleText.value.isNotBlank()) {
-                            viewModel.onEvent(NoteInputEvent.addATask(
-                                titleText.value, bodyText.value, date.value,
-                                backGroundColor.value.toArgb().toString()
-                            ))
-                            return@AddButton
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 25.dp)
+                ) {
+                    if (state.value.isLoading) CircularProgressIndicator()
+                    else {
+                        AddButton(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .navigationBarsPadding()
+                        ) {
+                            if (titleText.value.isNotBlank()) {
+                                viewModel.onEvent(NoteInputEvent.addATask(
+                                    titleText.value, bodyText.value, date.value,
+                                    backGroundColor.value.toArgb().toString()
+                                ))
+                                return@AddButton
+                            }
+                            Toast.makeText(
+                                navController.context,
+                                "Please, add a title to your task",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         }
-                        Toast.makeText(
-                            navController.context,
-                            "Please, add a title to your task",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     }
                 }
             }
         }
+
+
     }
 
 
