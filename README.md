@@ -2,15 +2,16 @@
 
 | LogIn Screen | Your Tasks | Friend's Tasks |
 |---------|---------|---------|
-|![LogIn Screen](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/86982079-6b8c-475d-bdb3-7154f8c578e0) | ![Your Tasks Screen](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/de096366-485e-46ce-aa29-668da9e92a30) |![Friend's Tasks ](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/37edb07f-1fba-4253-81b5-f99d88f50c60) | 
+| ![SignIn](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/2b016e09-d5bb-4169-bc6f-52249c5edb3a) | ![YourTask](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/6d72eaaa-8179-46d7-a4c8-dcfac03324b7) |![FriendsTask](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/6fdbc55b-8955-4aeb-9a7e-8ae16e372421)| 
 
 | Task Detail |Task Input |Task Calender|
 |----------|---------|---------|
-| ![Task Detail](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/cde6a698-c43d-4fa3-b8db-acd3befc99da)| ![Task Input ](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/86033258-57a4-4f62-bcb9-217a2a07f208)| ![Calender](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/e1052cbc-7722-4282-b498-8e59364d8d2a) |
+|![TaskDetail](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/14d3733e-7ed5-4be3-8f6a-4a70ade4e031) | ![TaskInput](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/a11e0b91-6be3-4fa9-9a58-6f18bdea731b) | ![CalenderPicker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/d5c2c901-9812-4bbf-aa6b-36a3cf2b3f8e)
+ |
 
 | Task Color | Delete Task | Search Tasks |
 |----------|---------|---------|
-| ![Color Picker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/1d781817-31a2-4355-bbe6-2803adcab560) | ![Delete](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/fd1e6b0d-7b85-48b9-a87f-25af89184572) | ![Ekran Görüntüsü (11)](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/fd42391e-eee9-4c96-99b7-042401d4131f) |
+| ![ColorPicker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/ee3c1c61-065a-423d-8b1b-34e17883e30e) | ![Delete](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/2bd27f2c-bac0-4a72-8f44-9cfdcb6afbee) | ![Search](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/254515ee-d9da-469a-a00e-4e3cbf0ffc86)|
 
 
 
