@@ -6,8 +6,7 @@
 
 | Task Detail |Task Input |Task Calender|
 |----------|---------|---------|
-|![TaskDetail](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/14d3733e-7ed5-4be3-8f6a-4a70ade4e031) | ![TaskInput](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/a11e0b91-6be3-4fa9-9a58-6f18bdea731b) | ![CalenderPicker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/d5c2c901-9812-4bbf-aa6b-36a3cf2b3f8e)
- |
+|![TaskDetail](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/14d3733e-7ed5-4be3-8f6a-4a70ade4e031) | ![TaskInput](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/a11e0b91-6be3-4fa9-9a58-6f18bdea731b) | ![CalenderPicker](https://github.com/BerkayyKurtoglu/TaskManager/assets/88981781/d5c2c901-9812-4bbf-aa6b-36a3cf2b3f8e)|
 
 | Task Color | Delete Task | Search Tasks |
 |----------|---------|---------|
