@@ -12,9 +12,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,10 +36,13 @@ fun CardItem(
 ) {
 
     Card(
-        modifier = Modifier.padding(start = 25.dp, end = 25.dp, top = 15.dp).border(width = 0.4.dp, color = Color(
-            0xFFE9E9E9
-        ), shape = RoundedCornerShape(35.dp)
-        ),
+        modifier = Modifier
+            .padding(start = 25.dp, end = 25.dp, top = 15.dp)
+            .border(
+                width = 0.4.dp, color = Color(
+                    0xFFE9E9E9
+                ), shape = RoundedCornerShape(35.dp)
+            ),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFFFF)),
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 0.dp
@@ -44,8 +50,15 @@ fun CardItem(
         shape = RoundedCornerShape(35.dp),
     ) {
         Column(
-            Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+
+            if (task.isPrivate){
+                Icon(imageVector = Icons.Outlined.Lock, contentDescription = "")
+                Spacer(modifier = Modifier.height(5.dp))
+            }
 
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(
