@@ -23,9 +23,10 @@ class FriendsTaskRepository(
         delay(500)
         try {
 
-            val tasks = firebase.firestore.collection(Constants.TASK_COLLECTION)
+            var tasks = firebase.firestore.collection(Constants.TASK_COLLECTION)
                 .whereNotEqualTo("user",email)
                 .whereEqualTo("isMarked",true).get().await().toObjects(Task::class.java)
+            tasks = tasks.filter { !it.isPrivate }
             emit(Resource.Success(data = tasks))
 
         }catch (e : FirebaseFirestoreException){
@@ -41,10 +42,11 @@ class FriendsTaskRepository(
         delay(500)
         try {
 
-            val taskList =
+            var taskList =
                 firebase.firestore.collection(Constants.TASK_COLLECTION)
                 .whereNotEqualTo("user",email)
                 .whereEqualTo("isMarked",false).get().await().toObjects(Task::class.javaObjectType)
+            taskList = taskList.filter { !it.isPrivate }
             emit(Resource.Success(taskList))
 
         }catch (e : FirebaseFirestoreException){

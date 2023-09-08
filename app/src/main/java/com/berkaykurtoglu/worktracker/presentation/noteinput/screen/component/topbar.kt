@@ -7,6 +7,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.LockOpen
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,9 +35,9 @@ fun TopBarComponent(
     calendarState : UseCaseState,
     backGroundColor : Color,
     colorPickerState : MutableState<Boolean>,
-    date : String
+    date : String,
+    isPrivate : MutableState<Boolean>
 ) {
-
 
     TopAppBar(
         modifier = Modifier
@@ -51,6 +53,15 @@ fun TopBarComponent(
                          }
         },
         actions = {
+
+            //Private Button
+            IconButton(onClick = {
+                    isPrivate.value = !isPrivate.value
+            }) {
+                Icon(
+                    imageVector = if (isPrivate.value) Icons.Outlined.Lock else Icons.Outlined.LockOpen ,
+                    contentDescription = "Private Icon")
+            }
 
             //Data Picker Button
             IconButton(onClick = {

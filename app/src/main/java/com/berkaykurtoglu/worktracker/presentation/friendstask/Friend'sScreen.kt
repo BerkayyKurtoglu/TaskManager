@@ -66,7 +66,7 @@ fun FriendsScreen(
 
 
             if (state.error.isNotBlank()){
-                TODO()
+                /*TODO()*/
             }else{
                 //Show lazy column
                 if(state.tasks.isEmpty() && !state.isLoading){

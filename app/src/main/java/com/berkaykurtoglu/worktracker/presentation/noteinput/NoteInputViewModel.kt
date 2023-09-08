@@ -52,9 +52,9 @@ class NoteInputViewModel @Inject constructor(
         event : NoteInputEvent
     ){
         when(event){
-            is NoteInputEvent.addATask ->{
+            is NoteInputEvent.AddATask ->{
                 user?.let {
-                    val task = Task(event.title, event.body, event.deadLine, event.backGround, user =it)
+                    val task = Task(event.title, event.body, event.deadLine, event.backGround, user =it, isPrivate = event.isPrivate)
                     addATask(task)
                 }
             }

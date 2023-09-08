@@ -4,16 +4,12 @@ import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material3.CircularProgressIndicator
@@ -79,12 +75,16 @@ fun NoteInputScreen(
         mutableStateOf(false)
     }
 
+    val isPrivate = remember {
+        mutableStateOf(false)
+    }
+
     date.value = datePicker(calendarState)
 
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopBarComponent(navController,calendarState,backGroundColor.value,colorPickerState,date.value) }
+        topBar = { TopBarComponent(navController,calendarState,backGroundColor.value,colorPickerState,date.value,isPrivate) }
 
     ) {
 
@@ -144,9 +144,9 @@ fun NoteInputScreen(
                                 .navigationBarsPadding()
                         ) {
                             if (titleText.value.isNotBlank()) {
-                                viewModel.onEvent(NoteInputEvent.addATask(
+                                viewModel.onEvent(NoteInputEvent.AddATask(
                                     titleText.value, bodyText.value, date.value,
-                                    backGroundColor.value.toArgb().toString()
+                                    backGroundColor.value.toArgb().toString(),isPrivate.value
                                 ))
                                 return@AddButton
                             }

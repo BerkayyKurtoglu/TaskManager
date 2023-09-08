@@ -13,8 +13,10 @@ data class Task(
     @DocumentId
     var documentId : String = "",
     @field:JvmField
-    var isMarked : Boolean = false
+    var isMarked : Boolean = false,
+    @field:JvmField
+    var isPrivate : Boolean = false,
 
 ) {
-    constructor() : this("", "", "", "", listOf(), "",isMarked = false)
+    constructor() : this("", "", "", "", listOf(), "",isMarked = false, isPrivate = false)
 }
