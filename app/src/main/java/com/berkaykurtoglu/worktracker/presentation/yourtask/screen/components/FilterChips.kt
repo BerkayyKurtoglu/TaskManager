@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTaskEvent
 import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,7 +26,8 @@ import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 fun FilterChips(
     filterList: List<FilterCategorie>,
     selectedItem : MutableState<FilterCategorie>,
-    viewModel : YourTasksViewModel = hiltViewModel()
+    viewModel : YourTasksViewModel = hiltViewModel(),
+    isPrivateSelection : Boolean
 ) {
 
 
@@ -43,10 +45,12 @@ fun FilterChips(
                     selectedItem.value = it
                     when(it){
                         is FilterCategorie.UnMarkedChip ->{
-                            viewModel.getUnmarkedTasks()
+                            viewModel.getUnmarkedTasks(isPrivateSelection)
+                            viewModel.onEvent(YourTaskEvent.UnDoneSelection)
                         }
                         is FilterCategorie.MarkedChip ->{
-                            viewModel.getMarkedTasks()
+                            viewModel.getMarkedTasks(isPrivateSelection)
+                            viewModel.onEvent(YourTaskEvent.DoneSelection)
                         }
                     }
                 },

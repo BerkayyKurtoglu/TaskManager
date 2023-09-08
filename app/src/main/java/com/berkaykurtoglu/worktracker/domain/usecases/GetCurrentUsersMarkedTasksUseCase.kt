@@ -7,7 +7,8 @@ class GetCurrentUsersMarkedTasksUseCase(
 ) {
 
     operator fun invoke(
-        email : String
-    ) = repository.getUsersMarkedTasks(email)
+        email : String,
+        isPrivate : Boolean
+    ) = repository.getUsersMarkedTasks(email,isPrivate)
 
 }

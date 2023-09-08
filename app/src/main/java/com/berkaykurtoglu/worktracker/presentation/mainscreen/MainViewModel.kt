@@ -103,6 +103,9 @@ class MainViewModel @Inject constructor(
                     _state.value = _state.value.copy(dialogError = "Something went wrong")
                 }
             }
+            is MainEvent.PrivateSelection ->{
+
+            }
         }
     }
 

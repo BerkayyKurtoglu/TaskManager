@@ -26,7 +26,8 @@ import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 @Composable
 fun YourTaskScreen(
     viewModel: YourTasksViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
+    isPrivateSelection : Boolean
 ) {
 
     val state by remember {
@@ -64,7 +65,7 @@ fun YourTaskScreen(
             verticalArrangement = Arrangement.Top,
             modifier = Modifier.fillMaxSize()
         ) {
-            FilterChips(filterList,chipIndex)
+            FilterChips(filterList,chipIndex,isPrivateSelection=isPrivateSelection)
 
             if (state.error.isNotBlank()){
                 TODO()

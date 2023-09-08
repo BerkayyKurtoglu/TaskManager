@@ -18,15 +18,17 @@ class YourTaskRepository(
 
 
     fun getUsersMarkedTasks(
-        email : String
+        email : String,
+        isPrivate : Boolean
     ) = flow<Resource<List<Task>>> {
         emit(Resource.Loading())
         delay(500)
         try {
 
-            val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
+            var taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
                 .whereEqualTo("user",email).whereEqualTo("isMarked",true)
                 .get().await().toObjects(Task::class.javaObjectType)
+            taskList = taskList.filter { it.isPrivate == isPrivate }
             emit(Resource.Success(taskList))
 
         }catch (e : FirebaseFirestoreException){
@@ -36,15 +38,17 @@ class YourTaskRepository(
     }
 
     fun getUsersUnmarkedTasks(
-        email : String
+        email : String,
+        isPrivate: Boolean
     ) = flow<Resource<List<Task>>> {
         emit(Resource.Loading())
         delay(500)
         try {
 
-            val taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
+            var taskList = firebase.firestore.collection(Constants.TASK_COLLECTION)
                 .whereEqualTo("user",email).whereEqualTo("isMarked",false)
                 .get().await().toObjects(Task::class.javaObjectType)
+            taskList = taskList.filter { it.isPrivate == isPrivate }
             emit(Resource.Success(taskList))
 
         }catch (e : FirebaseFirestoreException){

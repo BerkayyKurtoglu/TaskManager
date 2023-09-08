@@ -29,9 +29,9 @@ class YourTasksViewModel @Inject constructor(
         }
     }
 
-    fun getMarkedTasks(){
+    fun getMarkedTasks(isPrivate : Boolean = false){
         useCases.getCurrentUser()?.let {
-            useCases.getCurrentUsersMarkedTasks(it).onEach {
+            useCases.getCurrentUsersMarkedTasks(it, isPrivate = isPrivate).onEach {
 
                 when(it) {
                     is Resource.Success ->{
@@ -50,10 +50,10 @@ class YourTasksViewModel @Inject constructor(
         }
     }
 
-    fun getUnmarkedTasks(){
+    fun getUnmarkedTasks(isPrivate: Boolean = false){
         useCases.getCurrentUser()?.let {
 
-            useCases.getCurrentUsersUnmarkedTasksUseCase(it).onEach {
+            useCases.getCurrentUsersUnmarkedTasksUseCase(it, isPrivate = isPrivate).onEach {
 
                 when(it) {
                     is Resource.Success ->{
@@ -72,6 +72,23 @@ class YourTasksViewModel @Inject constructor(
 
         }
 
+    }
+
+    fun onEvent(
+        event : YourTaskEvent
+    ){
+        when(event) {
+            is YourTaskEvent.PrivateFilterSelection ->{
+                if (_state.value.isDone) getMarkedTasks(event.isPrivate)
+                else getUnmarkedTasks(event.isPrivate)
+            }
+            is YourTaskEvent.DoneSelection ->{
+                _state.value = _state.value.copy(isDone = true)
+            }
+            is YourTaskEvent.UnDoneSelection ->{
+                _state.value = _state.value.copy(isDone = false)
+            }
+        }
     }
 
 

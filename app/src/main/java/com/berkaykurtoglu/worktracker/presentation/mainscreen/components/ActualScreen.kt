@@ -47,11 +47,15 @@ fun ActualScreen(
         viewModel.state
     }
 
+    val isPrivateSelection = remember {
+        mutableStateOf(false)
+    }
+
 
     Scaffold(
         bottomBar = {
             BottomBarScreen(
-                viewModel, signOutNavController = signOutNavController,inScreenNavController,category.value)
+                viewModel, signOutNavController = signOutNavController, navController = inScreenNavController, category = category.value,isPrivate = isPrivateSelection)
         }
     ){
 
@@ -69,7 +73,7 @@ fun ActualScreen(
                             .weight(1f))
                     }
                 }
-                val index = TableRow(paddingValues = it, navController = inScreenNavController)
+                val index = TableRow(paddingValues = it, navController = inScreenNavController, isPrivate = isPrivateSelection.value)
                 when(index){
                     0 ->{category.value = Category.YOUR_TASK}
                     1 -> {category.value = Category.FRIEND_TASK}

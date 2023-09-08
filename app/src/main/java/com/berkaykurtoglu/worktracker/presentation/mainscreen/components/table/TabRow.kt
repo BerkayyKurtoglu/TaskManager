@@ -33,14 +33,15 @@ fun TableRow(
     pagerState: PagerState = rememberPagerState(),
     navController: NavController,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    isPrivate : Boolean
 ) : Int {
 
     val tabs = listOf(
         TabItem(
             title = "Your Tasks",
             icon = Icons.Outlined.Task,
-            screen = { YourTaskScreen(navController = navController) }
+            screen = { YourTaskScreen(navController = navController, isPrivateSelection = isPrivate) }
         ),
         TabItem(
             title = "Friend's Tasks",

@@ -9,8 +9,9 @@ class GetCurrentUsersUnmarkedTasksUseCase (
 ){
 
     operator fun invoke(
-        email : String
-    ) = yourTaskRepository.getUsersUnmarkedTasks(email)
+        email : String,
+        isPrivate : Boolean
+    ) = yourTaskRepository.getUsersUnmarkedTasks(email,isPrivate)
 
 
 
