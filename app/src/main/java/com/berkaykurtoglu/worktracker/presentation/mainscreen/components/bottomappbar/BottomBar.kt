@@ -49,7 +49,6 @@ fun BottomBarScreen (
     var isVisible by remember {
         mutableStateOf(true)
     }
-    var coroutineScope = rememberCoroutineScope()
 
     isVisible = category == Category.YOUR_TASK
 
