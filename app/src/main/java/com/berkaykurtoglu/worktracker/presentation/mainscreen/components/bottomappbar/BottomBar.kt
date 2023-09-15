@@ -7,7 +7,6 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExitToApp
-import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.LockOpen
 import androidx.compose.material3.BottomAppBar
@@ -18,7 +17,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -32,7 +30,6 @@ import com.berkaykurtoglu.worktracker.presentation.yourtask.YourTasksViewModel
 import com.berkaykurtoglu.worktracker.util.Category
 import com.berkaykurtoglu.worktracker.util.Constants
 import com.berkaykurtoglu.worktracker.util.Screens
-import com.google.firebase.firestore.auth.User
 
 @Composable
 fun BottomBarScreen (
