@@ -13,6 +13,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -47,23 +48,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             TaskManagerTheme {
                 // A surface container using the 'background' color from the theme
-                val systemController = rememberSystemUiController()
-
-
-                SideEffect {
-                    systemController.setSystemBarsColor(
-                        color = md_theme_light_surfaceVariant ,
-                        darkIcons = true
-                    )
-                    systemController.setNavigationBarColor(
-                        color = md_theme_light_surfaceVariant,
-                        darkIcons = true
-                    )
-                }
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    tonalElevation = 0.5.dp
                 ) {
 
                     val navController = rememberNavController()

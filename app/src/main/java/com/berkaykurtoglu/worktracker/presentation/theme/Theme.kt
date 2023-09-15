@@ -1,9 +1,15 @@
 package com.berkaykurtoglu.worktracker.presentation.theme
 
+import android.os.Build
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 private val LightColors = lightColorScheme(
@@ -76,10 +82,32 @@ fun TaskManagerTheme(
   useDarkTheme: Boolean = false,
   content: @Composable() () -> Unit
 ) {
-  val colors = LightColors
 
-  MaterialTheme(
-    colorScheme = colors,
-    content = content
-  )
+    val context = LocalContext.current
+    val colors = when {
+        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ) ->{
+            dynamicLightColorScheme(context)
+        }
+        else -> LightColors
+    }
+
+    val view = LocalView.current
+    val systemController = rememberSystemUiController()
+    if (!view.isInEditMode){
+        SideEffect {
+            systemController.setSystemBarsColor(
+                color = colors.surfaceVariant ,
+                darkIcons = true
+            )
+            systemController.setNavigationBarColor(
+                color = colors.surfaceVariant,
+                darkIcons = true
+            )
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colors,
+        content = content
+    )
 }
