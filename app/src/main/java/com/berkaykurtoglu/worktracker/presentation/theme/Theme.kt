@@ -1,6 +1,7 @@
 package com.berkaykurtoglu.worktracker.presentation.theme
 
 import android.os.Build
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -80,7 +81,7 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun TaskManagerTheme(
   useDarkTheme: Boolean = false,
-  content: @Composable() () -> Unit
+  content: @Composable() (colors : ColorScheme) -> Unit
 ) {
 
     val context = LocalContext.current
@@ -108,6 +109,6 @@ fun TaskManagerTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        content = content
+        content = { content(colors) }
     )
 }

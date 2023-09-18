@@ -43,7 +43,6 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             TaskManagerTheme {
@@ -51,7 +50,7 @@ class MainActivity : ComponentActivity() {
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    tonalElevation = 0.5.dp
+                    tonalElevation = 0.3.dp
                 ) {
 
                     val navController = rememberNavController()

@@ -88,8 +88,9 @@ fun NoteInputScreen(
 
     ) {
 
-        Surface(
-            color = md_theme_light_surfaceVariant
+        androidx.compose.material3.Surface(
+            tonalElevation = 0.5.dp
+            //color = md_theme_light_surfaceVariant
         ) {
             Column(
                 modifier = Modifier
