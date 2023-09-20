@@ -19,6 +19,7 @@ import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -46,7 +47,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.berkaykurtoglu.worktracker.presentation.signin.SignInScreenViewModel
-import com.berkaykurtoglu.worktracker.presentation.theme.TextFieldBackGroundColor
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalTextApi::class)
@@ -122,9 +122,9 @@ fun ActualScreen(
                 .shadow(0.5.dp, RoundedCornerShape(13.dp)),
             shape = RoundedCornerShape(13.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = TextFieldBackGroundColor,
-                unfocusedContainerColor = TextFieldBackGroundColor,
-                disabledContainerColor = TextFieldBackGroundColor,
+                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                disabledContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
             )
@@ -169,9 +169,9 @@ fun ActualScreen(
                 .shadow(0.5.dp, RoundedCornerShape(13.dp)),
             shape = RoundedCornerShape(13.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = TextFieldBackGroundColor,
-                unfocusedContainerColor = TextFieldBackGroundColor,
-                disabledContainerColor = TextFieldBackGroundColor,
+                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                disabledContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent,
             )

@@ -17,6 +17,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -32,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.berkaykurtoglu.worktracker.presentation.search.lazycolumn.LazyTaskColumn
-import com.berkaykurtoglu.worktracker.presentation.theme.TextFieldBackGroundColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -85,8 +85,8 @@ fun SearchScreen(
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = Color.Transparent,
                             unfocusedBorderColor = Color.Transparent,
-                            focusedContainerColor = TextFieldBackGroundColor,
-                            unfocusedContainerColor = TextFieldBackGroundColor
+                            focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface
                         ),
                         modifier = Modifier
                             .padding(start = 15.dp)

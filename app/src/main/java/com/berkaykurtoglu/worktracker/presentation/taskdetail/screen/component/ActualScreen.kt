@@ -28,6 +28,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -51,7 +52,6 @@ import com.berkaykurtoglu.worktracker.domain.model.Task
 import com.berkaykurtoglu.worktracker.presentation.taskdetail.TaskDetailEvent
 import com.berkaykurtoglu.worktracker.presentation.taskdetail.TaskDetailViewModel
 import com.berkaykurtoglu.worktracker.presentation.theme.MarkAsDoneColor
-import com.berkaykurtoglu.worktracker.presentation.theme.TextFieldBackGroundColor
 import com.berkaykurtoglu.worktracker.util.Screens
 import com.google.firebase.Timestamp
 
@@ -190,8 +190,8 @@ fun ActualScreen(
                         focusedBorderColor = Color.Transparent,
                         unfocusedBorderColor = Color.Transparent,
                         disabledBorderColor = Color.Transparent,
-                        focusedContainerColor = TextFieldBackGroundColor,
-                        unfocusedContainerColor = TextFieldBackGroundColor
+                        focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                        unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface
                     ),
                     shape = RoundedCornerShape(15.dp),
                     keyboardOptions = KeyboardOptions.Default.copy(

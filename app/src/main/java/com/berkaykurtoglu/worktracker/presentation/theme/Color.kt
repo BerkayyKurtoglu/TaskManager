@@ -1,4 +1,5 @@
 package com.berkaykurtoglu.worktracker.presentation.theme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF4955A6)
@@ -73,6 +74,4 @@ val PurpleColor = Color(0xFFD0AFD5)
 val BlueVariantColor = Color(0xFFA2BACA)
 val YellowColor = Color(0xFFCABFA2)
 val MarkAsDoneColor = Color(0xFF5D8D6E)
-val TextFieldBackGroundColor = md_theme_light_inverseOnSurface
-
 
