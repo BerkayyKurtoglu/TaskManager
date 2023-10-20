@@ -39,6 +39,7 @@ fun LogInScreen (
     var buttonText by remember {
         mutableStateOf("Sign In")
     }
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,

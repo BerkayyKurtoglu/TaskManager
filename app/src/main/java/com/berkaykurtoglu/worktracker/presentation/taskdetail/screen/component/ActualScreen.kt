@@ -25,7 +25,6 @@ import androidx.compose.material.icons.outlined.KeyboardArrowUp
 import androidx.compose.material.pullrefresh.PullRefreshState
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -55,7 +54,7 @@ import com.berkaykurtoglu.worktracker.presentation.theme.MarkAsDoneColor
 import com.berkaykurtoglu.worktracker.util.Screens
 import com.google.firebase.Timestamp
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ActualScreen(
     task : Task,
@@ -69,7 +68,7 @@ fun ActualScreen(
         mutableStateOf("")
     }
 
-    var user = viewModel.getCurrentUser()
+    val user = viewModel.getCurrentUser()
 
     var visible by remember {
         mutableStateOf(true)
